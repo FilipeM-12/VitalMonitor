@@ -1,0 +1,42 @@
+{
+ "familia": "XGB",
+ "variante": "clinicas",
+ "ancoras": "causal",
+ "n_trials": 20,
+ "mae_cv": 9.552121670121842,
+ "mae_holdout": 11.91951814339564,
+ "mae_delta_holdout": 11.91951814339564,
+ "n_holdout": 50203,
+ "n_sujeitos_holdout": 40,
+ "coorte": {
+  "n_ids_pedidos": 50,
+  "n_sujeitos_dev": 244,
+  "n_sujeitos_teste": 40,
+  "n_janelas_dev": 321667,
+  "n_janelas_teste": 50203,
+  "ids_ausentes": [
+   "p006116",
+   "p008109",
+   "p014714",
+   "p031060",
+   "p031618",
+   "p063762",
+   "p065849",
+   "p066880",
+   "p069559",
+   "p070313"
+  ]
+ },
+ "n_features": 32,
+ "hiperparametros": {
+  "n_estimators": 1200,
+  "learning_rate": 0.005182569053772665,
+  "max_depth": 9,
+  "subsample": 0.887967464746275,
+  "colsample_bytree": 0.6028152191182129,
+  "reg_alpha": 0.001087667536944468,
+  "reg_lambda": 2.9309675209460218
+ },
+ "tempo_busca_s": 913.7,
+ "tempo_holdout_s": 37.1
+}

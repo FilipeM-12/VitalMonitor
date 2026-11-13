@@ -1,0 +1,39 @@
+{
+ "familia": "BILSTM",
+ "variante": "baseline",
+ "ancoras": "causal",
+ "n_trials": 20,
+ "mae_cv": 10.128406948339363,
+ "mae_holdout": 11.267332779430006,
+ "mae_delta_holdout": 11.267332779430006,
+ "n_holdout": 48999,
+ "n_sujeitos_holdout": 40,
+ "coorte": {
+  "n_ids_pedidos": 50,
+  "n_sujeitos_dev": 244,
+  "n_sujeitos_teste": 40,
+  "n_janelas_dev": 321667,
+  "n_janelas_teste": 50203,
+  "ids_ausentes": [
+   "p006116",
+   "p008109",
+   "p014714",
+   "p031060",
+   "p031618",
+   "p063762",
+   "p065849",
+   "p066880",
+   "p069559",
+   "p070313"
+  ]
+ },
+ "n_features": 27,
+ "hiperparametros": {
+  "learning_rate": 0.00010279038624705357,
+  "lstm_units_l1": 96,
+  "lstm_units_l2": 64,
+  "dropout_rate": 0.19199317512273997
+ },
+ "tempo_busca_s": 3770.9,
+ "tempo_holdout_s": 70.0
+}

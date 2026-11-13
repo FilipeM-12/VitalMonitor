@@ -1,0 +1,41 @@
+{
+ "hiperparametros": {
+  "n_estimators": 300,
+  "learning_rate": 0.005487829615827788,
+  "max_depth": 4,
+  "subsample": 0.8333468460101656,
+  "colsample_bytree": 0.6020844132938462,
+  "reg_alpha": 7.516757338648752,
+  "reg_lambda": 0.01185313239578427
+ },
+ "linhas": [
+  {
+   "versao": "v1",
+   "n_features": 15,
+   "mae_holdout": 12.2058,
+   "n": 50203,
+   "n_sujeitos": 40
+  },
+  {
+   "versao": "v2",
+   "n_features": 21,
+   "mae_holdout": 11.9272,
+   "n": 50203,
+   "n_sujeitos": 40
+  },
+  {
+   "versao": "v3",
+   "n_features": 27,
+   "mae_holdout": 12.0697,
+   "n": 50203,
+   "n_sujeitos": 40
+  },
+  {
+   "versao": "v4",
+   "n_features": 29,
+   "mae_holdout": 12.092,
+   "n": 50203,
+   "n_sujeitos": 40
+  }
+ ]
+}

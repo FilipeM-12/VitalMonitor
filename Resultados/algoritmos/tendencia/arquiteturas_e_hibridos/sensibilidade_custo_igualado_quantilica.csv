@@ -1,0 +1,5 @@
+direcao,semente,modelo,sens_xgb_media,sens_hibrido_media,ganho_medio,ic95_inf,ic95_sup,exclui_zero,ganho_4minh,ganho_5minh,ganho_6minh,ganho_7minh,ganho_8minh,ganho_9minh,ganho_10minh
+descida,0,BiLSTM+XGB,0.7987,0.8284,0.0297,0.007,0.0567,True,0.0052,0.0283,0.0379,0.0525,0.0313,0.0261,0.0265
+descida,0,BiTCN+XGB,0.7987,0.8067,0.008,-0.017,0.0349,False,-0.0027,0.0016,0.0033,0.005,0.0043,0.0139,0.0302
+subida,0,BiLSTM+XGB,0.7638,0.7558,-0.0081,-0.0273,0.0144,False,-0.0076,0.0102,-0.0025,-0.0076,-0.0141,-0.0121,-0.0226
+subida,0,BiTCN+XGB,0.7638,0.7612,-0.0026,-0.023,0.0258,False,-0.0136,0.0065,0.0052,-0.0015,-0.0047,0.0031,-0.0131

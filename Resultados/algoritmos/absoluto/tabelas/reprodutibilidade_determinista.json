@@ -1,0 +1,17 @@
+{
+ "HIBRIDO_BILSTM_XGB": {
+  "maes": [
+   11.71,
+   11.71,
+   11.71
+  ],
+  "amplitude": 0.0
+ },
+ "HIBRIDO_BITCN_XGB": {
+  "maes": [
+   11.7448,
+   11.7448
+  ],
+  "amplitude": 0.0
+ }
+}

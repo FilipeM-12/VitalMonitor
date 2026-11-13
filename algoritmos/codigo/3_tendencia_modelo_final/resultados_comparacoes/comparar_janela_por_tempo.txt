@@ -1,0 +1,7 @@
+descida  bloco        linhas dev  1012800 teste  168130 | prevalência dev 0.0233 teste 0.0263 | AUC dev 0.7545 teste 0.7368  (68 s)
+descida  tempo        linhas dev  1102650 teste  184994 | prevalência dev 0.0262 teste 0.0302 | AUC dev 0.7743 teste 0.7536  (155 s)
+descida  tempo_cheio  linhas dev   641105 teste  101310 | prevalência dev 0.0182 teste 0.0193 | AUC dev 0.7973 teste 0.7646  (207 s)
+subida   bloco        linhas dev  1012800 teste  168130 | prevalência dev 0.0251 teste 0.0304 | AUC dev 0.7904 teste 0.7771  (83 s)
+subida   tempo        linhas dev  1102650 teste  184994 | prevalência dev 0.0244 teste 0.0288 | AUC dev 0.7930 teste 0.7879  (187 s)
+subida   tempo_cheio  linhas dev   641105 teste  101310 | prevalência dev 0.0143 teste 0.0165 | AUC dev 0.8009 teste 0.7781  (352 s)
+FIM

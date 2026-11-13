@@ -1,0 +1,42 @@
+{
+ "gravacao": "participante_C_replay_20261022_164547.csv",
+ "registo": "registo_referencia.csv",
+ "pulseira": "PULSEIRA_REPLAY_PARTICIPANTE_C",
+ "inicio_utc": "2026-10-22 15:45:47.921000",
+ "fim_utc": "2026-10-22 16:01:03.208000",
+ "duracao_min": 15.3,
+ "amostras": 95350,
+ "fs_media_hz": 104.2,
+ "buracos_gravacao": 0,
+ "fc": {
+  "n": 6,
+  "vies": 0.17,
+  "mae": 1.5,
+  "dp_erro": 2.14,
+  "erro_max": 4.0
+ },
+ "spo2": {
+  "n": 5,
+  "vies": 0.4,
+  "mae": 1.2,
+  "dp_erro": 1.52,
+  "erro_max": 2.0
+ },
+ "fr": {
+  "n": 4,
+  "vies": -0.5,
+  "mae": 0.5,
+  "dp_erro": 0.58,
+  "erro_max": 1.0
+ },
+ "cobertura": {
+  "fc": 0.835,
+  "spo2": 0.852,
+  "fr": 0.25
+ },
+ "portoes": {
+  "janelas": 186,
+  "aceites": 139,
+  "fracao_aceites": 0.747
+ }
+}

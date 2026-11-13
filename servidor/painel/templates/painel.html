@@ -1,0 +1,1493 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/nouislider@15.7.1/dist/nouislider.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/nouislider@15.7.1/dist/nouislider.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VitalMonitor — Painel de Controlo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * { margin:0; padding:0; box-sizing: border-box; }
+        body { font-family: 'Outfit', sans-serif; background: #EFF4FB; display: flex; flex-direction: column; min-height: 100vh; }
+        .site-header { background: linear-gradient(140deg, #07213F 0%, #0F3460 100%); height: 72px; padding: 0 48px; display: flex; align-items: center; box-shadow: 0 2px 24px rgba(7,33,63,0.4); flex-shrink: 0; }
+        .brand { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+        .brand-icon { width: 44px; height: 44px; background: #fff; border-radius: 11px; display: flex; align-items: center; justify-content: center; }
+        .brand-icon svg { width: 26px; height: 26px; }
+        .brand-name { font-size: 1.1rem; font-weight: 700; color: #fff; }
+        .brand-sub { font-size: 0.68rem; color: rgba(255,255,255,0.45); text-transform: uppercase; }
+        .header-right { margin-left: auto; }
+        .btn-back { display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18); color: rgba(255,255,255,0.9); padding: 9px 20px; border-radius: 9px; font-family: inherit; font-size: 0.88rem; font-weight: 500; cursor: pointer; text-decoration: none; }
+        .main-container { display: flex; flex: 1; overflow: hidden; }
+        .sidebar { width: 280px; background: #FFFFFF; border-right: 1px solid #DDE8F5; padding: 32px 0; flex-shrink: 0; }
+        .tab-btn { width: 100%; padding: 14px 32px; text-align: left; font-family: inherit; font-size: 1rem; font-weight: 600; color: #64748B; background: transparent; border: none; border-left: 3px solid transparent; cursor: pointer; display: flex; align-items: center; gap: 12px; }
+        .tab-btn svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 2; }
+        .tab-btn:hover { background: #F1F5F9; color: #0EA5E9; }
+        .tab-btn.active { background: #EFF4FB; border-left-color: #0EA5E9; color: #07213F; }
+        .content { flex: 1; overflow-y: auto; padding: 32px 40px; }
+        .tab-pane { display: none; animation: fadeIn 0.3s ease; }
+        .tab-pane.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* ===== Visão Geral ===== */
+        .stats-row { display: grid; grid-template-columns: repeat(4,1fr); gap:20px; margin-bottom:32px; }
+        .stat-card { background:white; border-radius:16px; padding:20px 24px; border:1px solid #DDE8F5; }
+        .stat-title { font-size:0.75rem; font-weight:600; text-transform:uppercase; color:#64748B; margin-bottom:8px; }
+        .stat-value { font-size:2.2rem; font-weight:800; color:#0F172A; }
+        .two-columns {display: flex; gap: 24px; margin-top: 16px;}
+        .title-left, .title-right { flex: 1; font-size: 1.2rem; font-weight: 700; color: #0F172A; margin-left: 4px; line-height: 1.3; }
+        .content-row { display: flex; gap: 24px; flex-direction: column;}
+        .column-main, .column-side { flex: 1; min-width: 0; }
+        .patients-table { background:white; border-radius:16px; border:1px solid #DDE8F5; overflow-x:auto; }
+        table { width:100%; border-collapse:collapse; }
+        th, td { padding:14px 16px; text-align:left; border-bottom:1px solid #DDE8F5; }
+        th { background:#F8FAFE; font-size:0.75rem; font-weight:700; color:#64748B; }
+        .alert-list { background: white; border-radius: 16px; border: 1px solid #DDE8F5; overflow: hidden; margin: 0; padding: 0; list-style: none; }
+        .alert-item { display: flex; flex-direction: column; align-items: stretch; gap: 4px; padding: 14px 16px; border-bottom: 1px solid #DDE8F5; }
+        .alert-item:last-child { border-bottom: none; }
+        .alert-header { display: flex; justify-content: space-between; align-items: center; }
+        .alert-paciente { font-weight: 600; color: #0F172A; }
+        .alert-tipo { font-size: 0.8rem; font-weight: 600; padding: 4px 10px; border-radius: 30px; }
+        .alert-tipo.danger { background: #FEE2E2; color: #EF4444; }
+        .alert-tipo.warning { background: #FEF3C7; color: #F59E0B; }
+        .alert-descricao { font-size: 0.82rem; color: #64748B; }
+        .btn-view { background: none; border: none; cursor: pointer; font-size: 1.2rem; transition: transform 0.2s;}
+        .btn-view:hover { transform: scale(1.1);}
+
+        /* ===== Monitorização ===== */
+        .badge { display:inline-block; padding:4px 10px; border-radius:30px; font-size:0.7rem; font-weight:600; }
+        .badge.danger { background:#FEE2E2; color:#EF4444; }
+        .badge.warning { background:#FEF3C7; color:#F59E0B; }
+        .badge.normal { background:#D1FAE5; color:#10B981; }
+        /* ── Indicador de tendência: icones, nao um badge, para nao se confundir
+           com o Estado (via rapida). Um icone por direcao (queda/subida). ── */
+        .tend-icon { display:inline-block; width:22px; height:22px; line-height:22px;
+                     text-align:center; border-radius:5px; font-weight:700; margin:0 1px; }
+        .tend-icon.tend-alerta { background:#FEE2E2; color:#EF4444; }
+        .tend-icon.tend-normal { color:#94A3B8; }
+        .tend-icon.tend-sem_confianca { color:#CBD5E1; opacity:0.55; }
+        .tend-icon.tend-sem_dados { color:#E2E8F0; }
+        /* ── Bolinha de estado junto a cada valor na visão geral: o número
+           fica sempre a preto (legível), a bolinha é que sinaliza o nível —
+           mesma lógica do badge de Estado e dos ícones de tendência. ── */
+        .vital-dot { display:inline-block; width:8px; height:8px; border-radius:50%;
+                     margin-right:6px; vertical-align:middle; }
+        .vital-dot.dot-danger  { background:#EF4444; }
+        .vital-dot.dot-warning { background:#F59E0B; }
+        .vital-dot.dot-normal  { background:#10B981; }
+        .vital-dot.dot-sem_dados { background:#E2E8F0; }
+        /* ── Cartões de valores atuais, no topo do detalhe do doente ──
+           Cada cartão tem o seu próprio instante porque cada sinal é escrito
+           de forma independente (a FR só atualiza a cada ~90 s) — a última
+           linha da tabela `medicao` não serve, teria 3 dos 4 campos a NULL. */
+        .vital-card { background:white; border-radius:12px; padding:12px 10px;
+                      border:1px solid #DDE8F5; text-align:center; }
+        .vital-card-label { font-size:0.72rem; font-weight:700; color:#64748B;
+                             text-transform:uppercase; letter-spacing:0.03em; }
+        .vital-card-valor { font-size:1.5rem; font-weight:700; color:#0F172A; margin:4px 0 2px; }
+        .vital-card-valor.danger  { color:#EF4444; }
+        .vital-card-valor.warning { color:#F59E0B; }
+        .vital-card-hora { font-size:0.7rem; color:#94A3B8; }
+        .monitor-layout { display:flex; gap:24px; }
+        .patient-list-side { width:280px; background:white; border-radius:16px; border:1px solid #DDE8F5; padding:16px; display: flex; flex-direction: column; gap:12px; }
+        .patient-item { padding:10px; border-radius:10px; cursor:pointer; margin-bottom:6px; border: 1.5px solid #DDE8F5; border-radius: 10px; }
+        .patient-item:hover, .patient-item.active { background:#EFF4FB; }
+        .monitor-detail { flex:1; background:white; border-radius:16px; border:1px solid #DDE8F5; padding:24px; }
+        .vital-cards { display:flex; gap:16px; margin-bottom:24px; }
+        .vital-card { background:#F8FAFE; border-radius:12px; padding:16px; flex:1; text-align:center; }
+        .vital-value { font-size:2rem; font-weight:800; }
+        .monitor-painel { display: flex; flex-direction: row;}
+
+        /* ── CANVAS com altura máxima ── */
+        canvas { max-height: 200px; width: 100% !important; }
+
+        /* ── WRAPPER do gráfico + estatísticas UCI ── */
+        .grafico-bloco { border: 1px solid #E2E8F0; border-radius: 12px; padding: 14px 16px 16px;
+                         background: #FFFFFF; }
+        .grafico-bloco + .grafico-bloco { margin-top: 4px; }
+        .grafico-titulo { font-size: 0.85rem; font-weight: 700; color: #334155;
+                           margin: 0 0 10px; display: flex; align-items: center; gap: 6px; }
+        .grafico-titulo .unidade { font-weight: 500; color: #94A3B8; font-size: 0.75rem; }
+        .grafico-wrapper { display: flex; align-items: stretch; gap: 15px; }
+
+        /* ── Controles de intervalo ── */
+        .interval-pill { background: #F1F5F9; border: 1px solid #DDE8F5; border-radius: 30px; padding: 6px 16px; font-family: inherit; font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+        .interval-pill.active { background: #07213F; color: white; border-color: #07213F; }
+        .interval-pill:hover {background: #145cad; color: white; border-color: #D1D5DB; }
+        #custom-range, #custom-range-historico { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+        #custom-range input, #custom-range-historico input { height: 38px; padding: 6px 10px; border: 1.5px solid #DDE8F5; border-radius: 8px; font-family: inherit; font-size: 0.85rem; }
+
+        /* ──────────────────────────────────────────────────────────────
+           VISOR DE ESTATÍSTICAS ESTILO MONITOR UCI
+           Fundo escuro tipo ecrã de equipo médico, fonte monoespaçada,
+           dígitos coloridos, linhas separadoras finas como no desfibrilhador
+        ────────────────────────────────────────────────────────────── */
+        .stats-box {
+            min-width: 120px;
+            max-width: 130px;
+            background: #0A1628;
+            border: 1px solid #1E3A5F;
+            border-radius: 10px;
+            padding: 10px 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            gap: 0;
+            box-shadow: 0 0 12px rgba(0,0,0,0.4), inset 0 0 20px rgba(0,10,30,0.6);
+        }
+
+        .uci-stat {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 5px 0;
+            border-bottom: 1px solid #1E3A5F;
+        }
+        .uci-stat:last-child { border-bottom: none; }
+
+        .uci-label {
+            font-family: 'Share Tech Mono', 'Courier New', monospace;
+            font-size: 0.85rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #4A7FA5;
+            margin-bottom: 2px;
+            line-height: 1;
+        }
+
+        .uci-value {
+            font-family: 'Share Tech Mono', 'Courier New', monospace;
+            font-size: 1.15rem;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            line-height: 1.25;
+            overflow-wrap: break-word;
+            word-break: break-word;
+        }
+
+        /* Cores por tipo de estatística — inspiradas nas traces dos monitores UCI */
+        .uci-max  .uci-value { color: #FF4D4D; text-shadow: 0 0 6px rgba(255,77,77,0.5); }
+        .uci-min  .uci-value { color: #4DC3FF; text-shadow: 0 0 6px rgba(77,195,255,0.5); }
+        .uci-mean .uci-value { color: #4DFFB4; text-shadow: 0 0 6px rgba(77,255,180,0.5); }
+        .uci-std  .uci-value { color: #FFD84D; text-shadow: 0 0 6px rgba(255,216,77,0.4); }
+
+        /* ===== Histórico ===== */
+        .historico-pacientes { background:white; border-radius:16px; border:1px solid #DDE8F5; padding:16px; margin-bottom:24px; max-height:300px; overflow-y:auto; display: flex; flex-direction: column; gap:8px; }
+        .historico-paciente-item { padding:8px 12px; cursor:pointer; border: 1.5px solid #DDE8F5; border-radius: 10px; margin-bottom: 8px;}
+        .historico-paciente-item:hover { background:#F1F5F9; }
+        .historico-detalhe { background:white; border-radius:16px; border:1px solid #DDE8F5; padding:16px; overflow-x:auto; display: flex; flex-direction: column; gap:8px; }
+        .close-modal-graficos { background: none; border: none; font-size: 24px; cursor: pointer; color: #64748B; }
+        .btn-graficos, .btn-graficos-visita { background:#07213F; color:white; border:none; padding:10px 24px; margin-right: 8px; border-radius:8px; cursor:pointer; font-weight:600;}
+        .medicoes-detalhe { background:#F8FAFE; border-radius:12px; padding:16px; margin-bottom:20px; display:flex; flex-direction:column; gap:8px;}
+
+        /* ===== Configuração ===== */
+        .config-group { background:white; border-radius:16px; border:1px solid #DDE8F5; padding:24px; margin-bottom:24px; }
+        .config-group h3 { font-size:1.2rem; font-weight:700; margin-bottom:16px; }
+        .config-row { display:flex; align-items:center; gap:20px; margin-bottom:16px; flex-wrap:wrap; border-radius:16px; border:1px solid #DDE8F5; padding:12px; }
+        .config-label { width:180px; font-weight:600; }
+        .config-input { width:120px; padding:8px; border:1px solid #DDE8F5; border-radius:8px; }
+        .btn-salvar { background:#07213F; color:white; border:none; padding:10px 24px; border-radius:8px; cursor:pointer; font-weight:600; margin-top:20px; }
+        .floating-btn { position: fixed; bottom: 30px; left: 30px; width: 200px; height: 50px; background: linear-gradient(135deg, #07213F, #113570); color: white; border: none; border-radius: 25px; display: flex; align-items: center; justify-content: center; gap: 8px; font-family: inherit; font-size: 0.9rem; font-weight: 600; cursor: pointer; box-shadow: 0 4px 15px rgba(7,33,63,0.3);}
+        .floating-btn:hover { transform: scale(1.05); }
+
+        /* ===== Modal Atribuição ===== */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 2000; align-items: center; justify-content: center; }
+        .modal-content { background: white; border-radius: 20px; max-width: 500px; width: 90%; max-height: 90%; overflow-y: auto; box-shadow: 0 10px 40px rgba(0,0,0,0.2); display: flex; flex-direction: column;}
+        .modal-header { padding: 20px 24px; border-bottom: 1px solid #DDE8F5; display: flex; justify-content: space-between; align-items: center; }
+        .modal-header h2 { font-size: 1.25rem; font-weight: 700; }
+        .close-modal { background: none; border: none; font-size: 24px; cursor: pointer; color: #64748B; }
+        .modal-body { padding: 24px; }
+        .form-group { margin-bottom: 18px; display: flex; justify-content: flex-start; flex-direction: column; }
+        .form-group label { display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 6px; color: #0F172A; }
+        .form-group, .form-group select { width: 100%; padding: 10px 12px; border: 1.5px solid #DDE8F5; border-radius: 10px; font-family: inherit; font-size: 0.9rem; }
+        .input-wrapper { position: relative; width: 100% }
+        .input-wrapper input, .input-wrapper select {width: 100%; padding: 10px 30px 10px 12px; border: 1.5px solid #DDE8F5; border-radius: 10px; font-family: inherit; font-size: 0.9rem; }
+        .clear-input { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #999; font-weight: bold; font-size: 1rem; line-height: 1; user-select: none; }
+        .clear-input:hover { color: #EF4444; transform: translateY(-50%) scale(1.1); transition: 0.2s; }
+        .reader-status-modal { background: #EFF4FB; padding: 12px; border-radius: 10px; margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
+        .reader-status-modal span { font-size: 0.85rem; font-weight: 500; }
+        .btn-submit-modal { width: 100%; padding: 12px; background: linear-gradient(135deg, #07213F, #113570); color: white; border: none; border-radius: 10px; font-weight: 600; cursor: pointer; }
+
+        /* ===== Barra de pesquisa ===== */
+        .input-wrapper-placeholder { position: relative; width: 100%; margin-bottom: 0; overflow: hidden; }
+        .input-wrapper-placeholder input { width: 100%; padding: 8px 30px 8px 8px; border: 1px solid #DDE8F5; border-radius: 8px; font-family: inherit; font-size: 0.9rem; background: white; color: #000; }
+        .input-wrapper-placeholder input::placeholder { color: transparent; }
+        .floating-placeholder { position: absolute; left: 8px; top: 50%; transform: translateY(-50%); color: #aaa; font-family: inherit; font-size: 0.9rem; pointer-events: none; white-space: nowrap; z-index: 1; display: block;}
+        .floating-placeholder.marquee { animation: marquee 10s linear infinite; }
+        @keyframes marquee { 0% { transform: translateY(-50%) translateX(0); } 100% { transform: translateY(-50%) translateX(-100%); } }
+        .clear-search { cursor: pointer; color: #aaa; font-weight: bold; font-size: 1.1rem; transition: color 0.2s; flex-shrink: 0; }
+        .clear-search:hover { color: #EF4444; }
+
+        /* noUiSlider */
+        .noUi-handle { border-radius: 50% !important; width: 18px !important; height: 18px !important; background: #0EA5E9 !important; border: 2px solid white !important; box-shadow: 0 1px 3px rgba(0,0,0,0.2) !important; cursor: pointer; top: -2px !important; right: -9px !important; }
+        .noUi-handle:before, .noUi-handle:after { display: none !important; }
+        .noUi-connect { background: #0EA5E9 !important; }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <a href="/" class="brand">
+            <div class="brand-icon"><svg viewBox="0 0 24 24"><path d="M3 12h3.5L9 4l5 16 3.5-8H21" stroke="#07213F" stroke-width="2.5"/></svg></div>
+            <div class="brand-text"><span class="brand-name">VitalMonitor</span><span class="brand-sub">Painel de Controlo</span></div>
+        </a>
+        <div class="header-right"><a href="/" class="btn-back">← Voltar</a></div>
+    </header>
+
+    <div class="main-container">
+        <div class="sidebar">
+            <button class="tab-btn active" data-tab="geral"><svg viewBox="0 0 24 24"><path d="M3 9l9-6 9 6v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg>Visão Geral</button>
+            <button class="tab-btn" data-tab="monitor"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M8 20h8"/></svg>Monitorização</button>
+            <button class="tab-btn" data-tab="historico"><svg viewBox="0 0 24 24"><path d="M12 8v4l3 3M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20z"/></svg>Histórico</button>
+            <button class="tab-btn" data-tab="config"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H5.78a1.65 1.65 0 0 0-1.51 1 1.65 1.65 0 0 0 .33 1.82l.03.03A10 10 0 0 0 12 17.66a10 10 0 0 0 6.37-2.63z"/></svg>Configuração</button>
+        </div>
+        <div class="content">
+
+            <!-- ===== VISÃO GERAL ===== -->
+            <div id="tab-geral" class="tab-pane active">
+                <div class="stats-row" id="stats-container">Carregando...</div>
+                <div class="content-row">
+                    <div class="title-right">Alertas</div>
+                    <div class="column-side">
+                        <ul id="alertas-lista" class="alert-list">
+                            <li class="alert-item">Carregando...</li>
+                        </ul>
+                    </div>
+                    <div class="title-left">Lista de Pacientes (com pulseira ativa)</div>
+                    <div class="column-main">
+                        <div class="patients-table">
+                            <table id="tabela-pacientes">
+                                <thead>
+                                    <!-- TAS/TAD (pressão absoluta) fora de âmbito por agora, ver
+                                         comentário equivalente no bloco de gráficos: <th>TAS</th><th>TAD</th> -->
+                                    <tr><th>Paciente</th><th>Tempo de Espera</th><th>Estado</th><th title="Detetor de tendência: queda / subida previstas">Tendência</th><th>FC</th><th>SpO₂</th><th>Temp</th><th>FR</th><th style="width: 40px;"> </th></tr>
+                                </thead>
+                                <tbody id="pacientes-tbody">
+                                    <tr><td colspan="9">Carregando...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== MONITORIZAÇÃO ===== -->
+            <div id="tab-monitor" class="tab-pane">
+                <div class="monitor-layout">
+                    <div class="patient-list-side">
+                        <h3>Pacientes com pulseira</h3>
+                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
+                            <div class="input-wrapper-placeholder" style="flex: 1;">
+                                <input type="text" id="pesquisaMonitor" title="...">
+                                <span class="floating-placeholder">Pesquisar por nome, nº utente ou pulseira...&nbsp;&nbsp;&nbsp;</span>
+                            </div>
+                            <span class="clear-search" data-target="pesquisaMonitor">✖</span>
+                        </div>
+                        <div id="lista-pacientes-monitor"></div>
+                    </div>
+                    <div class="monitor-detail">
+                        <div id="ppg-live-container" style="background:#0B1220; border-radius:12px; padding:12px 16px; margin-bottom:20px; display:none;">
+                            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+                                <span style="color:#94A3B8; font-size:0.85rem; font-weight:600;">PPG em tempo real</span>
+                                <span style="display:flex; gap:14px; font-size:0.8rem;">
+                                    <span style="color:#38BDF8;">● IR</span>
+                                    <span style="color:#F87171;">● RED</span>
+                                </span>
+                            </div>
+                            <div style="height:120px;">
+                                <canvas id="ppg-live-canvas"></canvas>
+                            </div>
+                        </div>
+
+                        <div id="valores-atuais-container" style="display:none; margin-bottom:20px;">
+                            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(100px,1fr)); gap:10px;">
+                                <div class="vital-card">
+                                    <div class="vital-card-label">FC</div>
+                                    <div class="vital-card-valor" id="va-bpm-valor">—</div>
+                                    <div class="vital-card-hora" id="va-bpm-hora">—</div>
+                                </div>
+                                <div class="vital-card">
+                                    <div class="vital-card-label">SpO₂</div>
+                                    <div class="vital-card-valor" id="va-spo2-valor">—</div>
+                                    <div class="vital-card-hora" id="va-spo2-hora">—</div>
+                                </div>
+                                <div class="vital-card">
+                                    <div class="vital-card-label">Temp</div>
+                                    <div class="vital-card-valor" id="va-temp-valor">—</div>
+                                    <div class="vital-card-hora" id="va-temp-hora">—</div>
+                                </div>
+                                <div class="vital-card">
+                                    <div class="vital-card-label">FR</div>
+                                    <div class="vital-card-valor" id="va-resp-valor">—</div>
+                                    <div class="vital-card-hora" id="va-resp-hora">—</div>
+                                </div>
+                                <div class="vital-card">
+                                    <div class="vital-card-label">Tendência</div>
+                                    <div class="vital-card-valor" id="va-tendencia-valor" style="font-size:1.2rem;">—</div>
+                                    <div class="vital-card-hora" id="va-tendencia-hora">—</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="background:#F8FAFE; border-radius:12px; padding:16px; margin-bottom:20px; display:flex; flex-direction:column; gap:12px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <h3>Dados do Paciente</h3>
+                                <button id="btnDesatribuir" class="btn-salvar" style="background: #EF4444; padding: 6px 12px; margin:0;" hidden>🗑️ Desatribuir</button>
+                            </div>
+                            <div id="info-paciente">Selecione um paciente</div>
+                        </div>
+
+                        <div id="monitor-graficos-container" style="display: none;">
+                            <!-- Controles de intervalo com slider duplo -->
+                            <div style="margin-bottom: 20px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+                                <span style="font-weight:600;">Intervalo:</span>
+                                <div style="flex: 1; min-width: 250px;">
+                                    <div id="slider-duplo" style="margin-top: 16px;"></div>
+                                    <div style="display: flex; justify-content: space-between; margin-bottom:4px;">
+                                        <span id="inicio-label" style="font-size:0.8rem;"></span>
+                                        <span id="fim-label" style="font-size:0.8rem;"></span>
+                                    </div>
+                                </div>
+                                <button id="aplicar_monitor" class="btn-graficos" style="padding:6px 12px;">Atualizar Gráfico</button>
+                                <button id="toggle_modo" class="btn-graficos" style="padding:4px 8px; background:#0EA5E9;">⏱️ Tempo Real ON</button>
+                            </div>
+
+                            <!-- Gráficos — cada wrapper tem canvas (altura máx 200 px) + visor UCI -->
+                            <div style="display:flex; flex-direction: column; gap:20px;">
+
+                                <div class="grafico-bloco">
+                                <h4 class="grafico-titulo">Frequência Cardíaca <span class="unidade">bpm</span></h4>
+                                <div class="grafico-wrapper">
+                                    <div style="flex:1; min-width:0;">
+                                        <canvas id="grafico-fc"></canvas>
+                                    </div>
+                                    <div id="stats-fc" class="stats-box">
+                                        <div class="uci-stat uci-max"><span class="uci-label">MÁX</span><span class="uci-value">—</span></div>
+                                        <div class="uci-stat uci-min"><span class="uci-label">MÍN</span><span class="uci-value">—</span></div>
+                                        <div class="uci-stat uci-mean"><span class="uci-label">MÉD</span><span class="uci-value">—</span></div>
+                                        <div class="uci-stat uci-std"><span class="uci-label">D.P.</span><span class="uci-value">—</span></div>
+                                    </div>
+                                </div>
+                                </div>
+
+                                <div class="grafico-bloco">
+                                <h4 class="grafico-titulo">Saturação de Oxigénio <span class="unidade">SpO₂, %</span></h4>
+                                <div class="grafico-wrapper">
+                                    <div style="flex:1; min-width:0;">
+                                        <canvas id="grafico-spo2"></canvas>
+                                    </div>
+                                    <div id="stats-spo2" class="stats-box">
+                                        <div class="uci-stat uci-max"><span class="uci-label">MÁX</span><span class="uci-value">—</span></div>
+                                        <div class="uci-stat uci-min"><span class="uci-label">MÍN</span><span class="uci-value">—</span></div>
+                                        <div class="uci-stat uci-mean"><span class="uci-label">MÉD</span><span class="uci-value">—</span></div>
+                                        <div class="uci-stat uci-std"><span class="uci-label">D.P.</span><span class="uci-value">—</span></div>
+                                    </div>
+                                </div>
+                                </div>
+
+                                <div class="grafico-bloco">
+                                <h4 class="grafico-titulo">Temperatura <span class="unidade">°C</span></h4>
+                                <div class="grafico-wrapper">
+                                    <div style="flex:1; min-width:0;">
+                                        <canvas id="grafico-temp"></canvas>
+                                    </div>
+                                    <div id="stats-temp" class="stats-box">
+                                        <div class="uci-stat uci-max"><span class="uci-label">MÁX</span><span class="uci-value">—</span></div>
+                                        <div class="uci-stat uci-min"><span class="uci-label">MÍN</span><span class="uci-value">—</span></div>
+                                        <div class="uci-stat uci-mean"><span class="uci-label">MÉD</span><span class="uci-value">—</span></div>
+                                        <div class="uci-stat uci-std"><span class="uci-label">D.P.</span><span class="uci-value">—</span></div>
+                                    </div>
+                                </div>
+                                </div>
+
+                                <div class="grafico-bloco">
+                                <h4 class="grafico-titulo">Frequência Respiratória <span class="unidade">resp/min</span></h4>
+                                <div class="grafico-wrapper">
+                                    <div style="flex:1; min-width:0;">
+                                        <canvas id="grafico-resp"></canvas>
+                                    </div>
+                                    <div id="stats-resp" class="stats-box">
+                                        <div class="uci-stat uci-max"><span class="uci-label">MÁX</span><span class="uci-value">—</span></div>
+                                        <div class="uci-stat uci-min"><span class="uci-label">MÍN</span><span class="uci-value">—</span></div>
+                                        <div class="uci-stat uci-mean"><span class="uci-label">MÉD</span><span class="uci-value">—</span></div>
+                                        <div class="uci-stat uci-std"><span class="uci-label">D.P.</span><span class="uci-value">—</span></div>
+                                    </div>
+                                </div>
+                                </div>
+
+                                <!-- Tensão Arterial (calibração) — fora de âmbito por agora: o que está
+                                     proposto aqui é o detetor de tendência, não a tensão absoluta. Bloco
+                                     mantido comentado (em vez de apagado) para ser retomado quando essa
+                                     funcionalidade for desenvolvida; ver grafico-tensoes-historico no
+                                     modal do histórico e a função atualizarOuCriarGraficoTensoes().
+                                <div class="grafico-bloco">
+                                <h4 class="grafico-titulo">Tensão Arterial (calibração) <span class="unidade">mmHg</span></h4>
+                                <div class="grafico-wrapper">
+                                    <div style="flex:1; min-width:0;">
+                                        <canvas id="grafico-tensoes"></canvas>
+                                    </div>
+                                    <div id="stats-tensoes" class="stats-box">
+                                        <div class="uci-stat uci-max"><span class="uci-label">MÁX</span><span class="uci-value">—</span></div>
+                                        <div class="uci-stat uci-min"><span class="uci-label">MÍN</span><span class="uci-value">—</span></div>
+                                        <div class="uci-stat uci-mean"><span class="uci-label">MÉD</span><span class="uci-value">—</span></div>
+                                        <div class="uci-stat uci-std"><span class="uci-label">D.P.</span><span class="uci-value">—</span></div>
+                                    </div>
+                                </div>
+                                </div>
+                                -->
+
+                                <div class="grafico-bloco">
+                                <h4 class="grafico-titulo">Detetor de Tendência <span class="unidade">variação prevista, mmHg</span></h4>
+                                <div class="grafico-wrapper">
+                                    <div style="flex:1; min-width:0;">
+                                        <canvas id="grafico-tendencia"></canvas>
+                                    </div>
+                                    <div id="stats-tendencia" class="stats-box">
+                                        <div class="uci-stat uci-max"><span class="uci-label">MÁX ↓</span><span class="uci-value">—</span></div>
+                                        <div class="uci-stat uci-min"><span class="uci-label">MÁX ↑</span><span class="uci-value">—</span></div>
+                                        <div class="uci-stat uci-mean"><span class="uci-label">LIMIAR ↓</span><span class="uci-value">—</span></div>
+                                        <div class="uci-stat uci-std"><span class="uci-label">LIMIAR ↑</span><span class="uci-value">—</span></div>
+                                    </div>
+                                </div>
+                                </div>
+
+                            </div>
+                            <div id="monitor-msg" style="text-align:center; color:#64748B; margin-top:10px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== HISTÓRICO ===== -->
+            <div id="tab-historico" class="tab-pane">
+                <div class="historico-pacientes">
+                    <h3>Todos os Pacientes</h3>
+                    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
+                        <div class="input-wrapper-placeholder" style="flex: 1;">
+                            <input type="text" id="pesquisaHistorico" style="padding:8px;">
+                            <span class="floating-placeholder">Pesquisar por nome ou nº utente...&nbsp;&nbsp;&nbsp;</span>
+                        </div>
+                        <span class="clear-search" data-target="pesquisaHistorico">✖</span>
+                    </div>
+                    <div id="lista-todos-pacientes"></div>
+                </div>
+                <div class="historico-detalhe" id="historico-detalhe">
+                    <div style="background:#F8FAFE; border-radius:12px; padding:16px; margin-bottom:20px; display:flex; flex-direction:column; gap:12px;">
+                        <h3>Dados do Paciente</h3>
+                        <div id="info-paciente-historico">Selecione um paciente</div>
+                    </div>
+                    <div class="medicoes-detalhe">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: nowrap;">
+                            <h3 style="white-space: nowrap;">Medições</h3>
+                            <button id="btnVerGraficosHistorico" class="btn-graficos" style="display: none;">📊 Ver Gráficos Geral</button>
+                        </div>
+                        <div id="historico-conteudo">Selecione um paciente para ver o histórico completo.</div>
+                    </div>
+                </div>
+
+                <!-- Modal gráficos histórico -->
+                <div id="modalGraficosHistorico" class="modal" style="display: none;">
+                    <div class="modal-content" style="max-width: 80%; width: 90%;">
+                        <div class="modal-header">
+                            <h2>Gráficos do Paciente <span id="graficoPacienteNome"></span></h2>
+                            <button class="close-modal-graficos">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div style="margin-bottom: 20px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+                                <span style="font-weight:600;">Intervalo:</span>
+                                <button class="interval-pill active" data-interval="24h">Últimas 24h</button>
+                                <button class="interval-pill" data-interval="7d">Últimos 7 dias</button>
+                                <button class="interval-pill" data-interval="30d">Últimos 30 dias</button>
+                                <button class="interval-pill" data-interval="custom">Personalizado</button>
+                                <div id="custom-range-historico" style="display: none; gap: 10px; align-items: center;">
+                                    <input type="datetime-local" id="inicio_historico">
+                                    <input type="datetime-local" id="fim_historico">
+                                    <button id="aplicar_custom_historico" class="btn-salvar" style="padding:6px 12px;">Aplicar</button>
+                                </div>
+                            </div>
+                            <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+                                <div class="grafico-bloco"><h4 class="grafico-titulo">Frequência Cardíaca <span class="unidade">bpm</span></h4><canvas id="grafico-fc-historico"></canvas></div>
+                                <div class="grafico-bloco"><h4 class="grafico-titulo">Saturação de Oxigénio <span class="unidade">SpO₂, %</span></h4><canvas id="grafico-spo2-historico"></canvas></div>
+                                <div class="grafico-bloco"><h4 class="grafico-titulo">Temperatura <span class="unidade">°C</span></h4><canvas id="grafico-temp-historico"></canvas></div>
+                                <div class="grafico-bloco"><h4 class="grafico-titulo">Frequência Respiratória <span class="unidade">resp/min</span></h4><canvas id="grafico-resp-historico"></canvas></div>
+                                <!-- Tensão Arterial (calibração) — fora de âmbito por agora, ver
+                                     comentário equivalente na secção do monitor ao vivo.
+                                <div class="grafico-bloco"><h4 class="grafico-titulo">Tensão Arterial (calibração) <span class="unidade">mmHg</span></h4><canvas id="grafico-tensoes-historico"></canvas></div>
+                                -->
+                                <div class="grafico-bloco"><h4 class="grafico-titulo">Detetor de Tendência <span class="unidade">variação prevista, mmHg</span></h4><canvas id="grafico-tendencia-historico"></canvas></div>
+                            </div>
+                            <div id="grafico-msg-historico" style="text-align:center; color:#64748B; margin-top:10px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== CONFIGURAÇÃO ===== -->
+            <div id="tab-config" class="tab-pane">
+                <div class="config-group">
+                    <h3>Limites de Frequência Cardíaca (bpm)</h3>
+                    <div class="config-row"><span class="config-label">Atenção (mínimo):</span><input type="number" id="bpm_warning_min" class="config-input" step="1"><span class="config-desc">Abaixo → Atenção</span></div>
+                    <div class="config-row"><span class="config-label">Atenção (máximo):</span><input type="number" id="bpm_warning_max" class="config-input" step="1"><span class="config-desc">Acima → Atenção</span></div>
+                    <div class="config-row"><span class="config-label">Crítico (mínimo):</span><input type="number" id="bpm_danger_min" class="config-input" step="1"><span class="config-desc">Abaixo → Crítico</span></div>
+                    <div class="config-row"><span class="config-label">Crítico (máximo):</span><input type="number" id="bpm_danger_max" class="config-input" step="1"><span class="config-desc">Acima → Crítico</span></div>
+                </div>
+                <div class="config-group">
+                    <h3>Limites de SpO₂ (%)</h3>
+                    <div class="config-row"><span class="config-label">Atenção (mínimo):</span><input type="number" id="spo2_warning_min" class="config-input" step="1"><span class="config-desc">Abaixo → Atenção</span></div>
+                    <div class="config-row"><span class="config-label">Crítico (mínimo):</span><input type="number" id="spo2_danger_min" class="config-input" step="1"><span class="config-desc">Abaixo → Crítico</span></div>
+                </div>
+                <div class="config-group">
+                    <h3>Limites de Temperatura (°C)</h3>
+                    <div class="config-row"><span class="config-label">Atenção (mínimo):</span><input type="number" id="temp_warning_min" class="config-input" step="0.1"><span class="config-desc">Abaixo → Atenção</span></div>
+                    <div class="config-row"><span class="config-label">Atenção (máximo):</span><input type="number" id="temp_warning_max" class="config-input" step="0.1"><span class="config-desc">Acima → Atenção</span></div>
+                    <div class="config-row"><span class="config-label">Crítico (mínimo):</span><input type="number" id="temp_danger_min" class="config-input" step="0.1"><span class="config-desc">Abaixo → Crítico</span></div>
+                    <div class="config-row"><span class="config-label">Crítico (máximo):</span><input type="number" id="temp_danger_max" class="config-input" step="0.1"><span class="config-desc">Acima → Crítico</span></div>
+                </div>
+                <div class="config-group">
+                    <h3>Limites de Frequência Respiratória (resp/min)</h3>
+                    <div class="config-row"><span class="config-label">Atenção (mínimo):</span><input type="number" id="resp_warning_min" class="config-input" step="1"><span class="config-desc">Abaixo → Atenção</span></div>
+                    <div class="config-row"><span class="config-label">Atenção (máximo):</span><input type="number" id="resp_warning_max" class="config-input" step="1"><span class="config-desc">Acima → Atenção</span></div>
+                    <div class="config-row"><span class="config-label">Crítico (mínimo):</span><input type="number" id="resp_danger_min" class="config-input" step="1"><span class="config-desc">Abaixo → Crítico</span></div>
+                    <div class="config-row"><span class="config-label">Crítico (máximo):</span><input type="number" id="resp_danger_max" class="config-input" step="1"><span class="config-desc">Acima → Crítico</span></div>
+                </div>
+                <button class="btn-salvar" onclick="salvarConfiguracoes()">Salvar Configurações</button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Botão flutuante -->
+    <div class="floating-btn" id="btnAdicionarPaciente">
+        <span style="font-size:1rem; color:white; text-align:center; line-height:1.2;">Adicionar<br>Paciente</span>
+    </div>
+
+    <!-- Modal Atribuição -->
+    <div id="modalAtribuir" class="modal">
+        <div class="modal-content">
+            <div class="modal-header"><h2>Atribuir Pulseira a Paciente</h2><button class="close-modal">&times;</button></div>
+            <div class="modal-body">
+                <div class="reader-status-modal" id="readerStatusModal">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0EA5E9"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 15h3M7 11h5"/></svg>
+                    <span id="readerTextModal">A aguardar cartão...</span>
+                </div>
+                <form id="formAtribuirModal">
+                    <div class="form-group">
+                        <label>ID da Pulseira</label>
+                        <div class="input-wrapper"><input type="text" name="pulseira" id="pulseira_input" placeholder="Ex: PUL-001" required><span class="clear-input" data-target="pulseira_input">✖</span></div>
+                    </div>
+                    <div class="form-group">
+                        <label>Nº Utente</label>
+                        <div class="input-wrapper"><input type="text" name="paciente" id="paciente_id" placeholder="Lido do cartão" required><span class="clear-input" data-target="paciente_id">✖</span></div>
+                    </div>
+                    <div class="form-group">
+                        <label>Nome Completo</label>
+                        <div class="input-wrapper"><input type="text" name="nome" id="nome" placeholder="Lido do cartão"><span class="clear-input" data-target="nome">✖</span></div>
+                    </div>
+                    <div class="form-group">
+                        <label>Sexo</label>
+                        <select name="sexo" id="sexo"><option value="">Selecionar</option><option value="M">Masculino</option><option value="F">Feminino</option></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Idade</label>
+                        <div class="input-wrapper"><input type="number" name="idade" id="idade" placeholder="Lido do cartão"><span class="clear-input" data-target="idade">✖</span></div>
+                    </div>
+                    <div class="form-group">
+                        <label>Tensão Arterial Sistólica (mmHg)</label>
+                        <div class="input-wrapper"><input type="number" name="pressao_sistolica" id="pressao_sistolica" placeholder="Ex: 120"><span class="clear-input" data-target="pressao_sistolica">✖</span></div>
+                    </div>
+                    <div class="form-group">
+                        <label>Tensão Arterial Diastólica (mmHg)</label>
+                        <div class="input-wrapper"><input type="number" name="pressao_diastolica" id="pressao_diastolica" placeholder="Ex: 80"><span class="clear-input" data-target="pressao_diastolica">✖</span></div>
+                    </div>
+                    <input type="hidden" name="foto" id="foto">
+                    <button type="submit" class="btn-submit-modal">Confirmar Atribuição</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ─── Utilitário: preenche o visor UCI de uma stats-box ───────────────────
+        function preencherUCI(boxId, vals, unidade) {
+            const box = document.getElementById(boxId);
+            if (!box) return;
+            const rows = box.querySelectorAll('.uci-stat');
+
+            const validos = (vals || []).filter(v => v !== null && v !== undefined && !isNaN(v));
+            if (validos.length === 0) {
+                rows.forEach(r => r.querySelector('.uci-value').textContent = '—');
+                return;
+            }
+            const max  = Math.max(...validos);
+            const min  = Math.min(...validos);
+            const mean = validos.reduce((a, b) => a + b, 0) / validos.length;
+            const std  = Math.sqrt(validos.map(v => (v - mean) ** 2).reduce((a, b) => a + b, 0) / validos.length);
+            // Espaco fino QUEBRAVEL (\u2009) em vez do \u202F sem quebra usado antes:
+            // com unidades curtas ("bpm", "%") fica tudo numa linha; com "resp/min"
+            // (mais larga que a caixa) a unidade quebra para a linha seguinte em vez
+            // de transbordar a caixa.
+            const fmt  = (v, d = 1) => v.toFixed(d) + (unidade ? '\u2009' + unidade : '');
+
+            rows[0].querySelector('.uci-value').textContent = fmt(max);
+            rows[1].querySelector('.uci-value').textContent = fmt(min);
+            rows[2].querySelector('.uci-value').textContent = fmt(mean);
+            rows[3].querySelector('.uci-value').textContent = fmt(std);
+        }
+
+        // ─── VISÃO GERAL ────────────────────────────────────────────────────────
+        // Icone do detetor de tendencia, um por direcao. Binario por desenho
+        // (alerta/normal): o limiar do modelo foi otimizado para uma decisao
+        // de duas vias, nao para zonas graduadas como os sinais vitais.
+        // sem_confianca/sem_dados nao sao gravidade, sao disponibilidade da
+        // informacao (ver classify_tendencia_direcao em server.py).
+        function tendIconHTML(seta, estado, rotulo) {
+            const titulos = {
+                alerta: `${rotulo}: alerta`,
+                normal: `${rotulo}: normal`,
+                sem_confianca: `${rotulo}: sinal instável, sem confiança`,
+                sem_dados: `${rotulo}: sem dados`
+            };
+            return `<span class="tend-icon tend-${estado}" title="${titulos[estado] ?? rotulo}">${seta}</span>`;
+        }
+
+        function vitalDotHTML(estado) {
+            const titulos = { danger: 'Crítico', warning: 'Atenção', normal: 'Normal' };
+            const classe = estado ?? 'sem_dados';
+            return `<span class="vital-dot dot-${classe}" title="${titulos[estado] ?? 'Sem dados'}"></span>`;
+        }
+
+        // Descrição legível do que está a disparar o alerta de um doente: junta
+        // os sinais vitais fora dos limites (com o valor, para não obrigar a
+        // abrir o doente para saber "atenção a quê") e, separadamente, uma
+        // tendência confirmada — sinal que os vitais por si só não capturam.
+        function descricaoAlerta(p) {
+            const nomes     = { bpm: 'FC', spo2: 'SpO₂', temp: 'Temp', resp: 'FR' };
+            const unidades  = { bpm: 'bpm', spo2: '%', temp: '°C', resp: 'resp/min' };
+            const partes = [];
+            for (const chave of ['bpm', 'spo2', 'temp', 'resp']) {
+                const estado = p['estado_' + chave];
+                if (estado === 'danger' || estado === 'warning') {
+                    const valor = p.ultima_medicao[chave];
+                    const rotulo = estado === 'danger' ? 'crítico' : 'atenção';
+                    partes.push(`${nomes[chave]} ${rotulo}${valor != null ? ` (${valor} ${unidades[chave]})` : ''}`);
+                }
+            }
+            if (p.tendencia_descida === 'alerta') partes.push('tendência de queda de tensão confirmada');
+            if (p.tendencia_subida === 'alerta')  partes.push('tendência de subida de tensão confirmada');
+            return partes.length ? partes.join(' · ') : 'Sem detalhe disponível';
+        }
+
+        async function carregarVisaoGeral() {
+            try {
+                const resp = await fetch('/api/dashboard_resumo');
+                const data = await resp.json();
+                document.getElementById('stats-container').innerHTML = `
+                    <div class="stat-card"><div class="stat-title">Pacientes ativos</div><div class="stat-value">${data.total_pacientes_ativos}</div></div>
+                    <div class="stat-card warning"><div class="stat-title">Observações pendentes</div><div class="stat-value">${data.observacoes_pendentes}</div></div>
+                    <div class="stat-card critical"><div class="stat-title">Alertas críticos</div><div class="stat-value">${data.alertas_criticos}</div></div>
+                    <div class="stat-card"><div class="stat-title">Tempo de espera médio (hoje)</div><div class="stat-value">${data.tempo_espera_medio_hoje}</div></div>
+                `;
+                const tbody = document.getElementById('pacientes-tbody');
+                if (data.pacientes.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="9">Nenhum paciente ativo</td></tr>';
+                } else {
+                    // TAS/TAD (pressão absoluta) fora de âmbito por agora — mesma razão do
+                    // gráfico de tensão arterial comentado mais acima: o que está proposto
+                    // aqui é o detetor de tendência, não a pressão absoluta. Colunas retiradas
+                    // da tabela (cabeçalho e colspan já ajustados); linhas originais:
+                    //   <td>${p.pressao_sistolica ?? '—'}</td>
+                    //   <td>${p.pressao_diastolica ?? '—'}</td>
+                    tbody.innerHTML = data.pacientes.map(p => `
+                        <tr>
+                            <td><strong>${p.id}</strong></td>
+                            <td>${p.tempo_espera}</td>
+                            <td><span class="badge ${p.estado === 'danger' ? 'danger' : (p.estado === 'warning' ? 'warning' : 'normal')}">${p.estado === 'danger' ? 'Crítico' : (p.estado === 'warning' ? 'Atenção' : 'Normal')}</span></td>
+                            <td>${tendIconHTML('↓', p.tendencia_descida, 'Queda')}${tendIconHTML('↑', p.tendencia_subida, 'Subida')}</td>
+                            <td>${vitalDotHTML(p.estado_bpm)}${p.ultima_medicao.bpm ?? '—'}</td>
+                            <td>${vitalDotHTML(p.estado_spo2)}${p.ultima_medicao.spo2 ?? '—'}</td>
+                            <td>${vitalDotHTML(p.estado_temp)}${p.ultima_medicao.temp ?? '—'}</td>
+                            <td>${vitalDotHTML(p.estado_resp)}${p.ultima_medicao.resp ?? '—'}</td>
+                            <td style="text-align:center;">
+                                <button class="btn-view" data-id="${p.id}">👁</button>
+                            </td>
+                        </tr>
+                    `).join('');
+                    tbody.querySelectorAll('.btn-view').forEach(btn => {
+                        btn.addEventListener('click', e => { e.stopPropagation(); irParaMonitorizacao(btn.dataset.id); });
+                    });
+                }
+                const alertasContainer = document.getElementById('alertas-lista');
+                // Um alerta de tendência confirmado conta mesmo com os vitais normais —
+                // é precisamente o caso que a via rápida (só vitais) não deteta.
+                const alertas = data.pacientes.filter(p =>
+                    p.estado !== 'normal' || p.tendencia_descida === 'alerta' || p.tendencia_subida === 'alerta');
+                alertasContainer.innerHTML = alertas.length === 0
+                    ? '<li class="alert-item">Nenhum alerta registado</li>'
+                    : alertas.map(p => {
+                        const nivel = p.estado === 'danger' ? 'danger' : 'warning';
+                        return `
+                        <li class="alert-item">
+                            <div class="alert-header">
+                                <span class="alert-paciente">${p.id}</span>
+                                <span>
+                                    <span class="alert-tipo ${nivel}">${nivel === 'danger' ? 'Crítico' : 'Atenção'}</span>
+                                    <button class="btn-view" data-id="${p.id}">👁</button>
+                                </span>
+                            </div>
+                            <div class="alert-descricao">${descricaoAlerta(p)}</div>
+                        </li>`;
+                    }).join('');
+                alertasContainer.querySelectorAll('.btn-view').forEach(btn => {
+                    btn.addEventListener('click', e => { e.stopPropagation(); irParaMonitorizacao(btn.dataset.id); });
+                });
+            } catch(e) { console.error('Erro na visão geral', e); }
+        }
+
+        async function irParaMonitorizacao(pacienteId) {
+            document.querySelector('.tab-btn[data-tab="monitor"]').click();
+            setTimeout(async () => {
+                let el = document.querySelector(`.patient-item[data-id="${pacienteId}"]`);
+                if (!el) {
+                    await carregarPacientesMonitor();
+                    await new Promise(r => setTimeout(r, 200));
+                    el = document.querySelector(`.patient-item[data-id="${pacienteId}"]`);
+                }
+                if (el) el.click();
+            }, 300);
+        }
+
+        // ─── MONITORIZAÇÃO ──────────────────────────────────────────────────────
+        let charts = { fc: null, spo2: null, temp: null, tensoes: null };
+        let graficosInicializados = false;
+        let currentPacienteId    = null;
+        let todosPacientesMonitor = [];
+        let filtroMonitor        = '';
+        let slider               = null;
+        let dataInicioAtribuicao = null;
+        let modoTempoReal        = true;
+        let intervaloAtualizacao = null;
+
+        async function carregarPacientesMonitor() {
+            try {
+                const resp = await fetch('/api/pacientes_com_pulseira');
+                const data = await resp.json();
+                todosPacientesMonitor = data.pacientes;
+                pesquisarMonitor();
+                const inp = document.getElementById('pesquisaMonitor');
+                inp.removeEventListener('input', handlePesquisaMonitor);
+                inp.addEventListener('input', handlePesquisaMonitor);
+            } catch(e) { console.error('Erro ao carregar pacientes para monitorização', e); }
+        }
+
+        function handlePesquisaMonitor(e) { filtroMonitor = e.target.value; pesquisarMonitor(); }
+
+        function pesquisarMonitor() {
+            const termo = filtroMonitor.toLowerCase();
+            const container = document.getElementById('lista-pacientes-monitor');
+            const filtrados = todosPacientesMonitor.filter(p =>
+                p.id.toLowerCase().includes(termo) ||
+                p.pulseira_id.toLowerCase().includes(termo) ||
+                (p.nome && p.nome.toLowerCase().includes(termo))
+            );
+            if (filtrados.length === 0) { container.innerHTML = '<p>Nenhum paciente encontrado.</p>'; return; }
+            container.innerHTML = filtrados.map(p =>
+                `<div class="patient-item" data-id="${p.id}" data-pulseira="${p.pulseira_id}">${p.pulseira_id} - ${p.id} - ${p.nome || 'Sem nome'}</div>`
+            ).join('');
+            container.querySelectorAll('.patient-item').forEach(el => {
+                el.addEventListener('click', async () => {
+                    container.querySelectorAll('.patient-item').forEach(i => i.classList.remove('active'));
+                    el.classList.add('active');
+                    currentPacienteId = el.dataset.id;
+                    document.getElementById('btnDesatribuir').hidden = false;
+                    document.getElementById('monitor-graficos-container').style.display = 'block';
+                    iniciarPpgLive(el.dataset.pulseira);
+                    atualizarValoresAtuais(currentPacienteId);
+                    await inicializarSlider();
+                    await carregarUltimasMedicoesComSlider();
+                    carregarDadosPaciente(currentPacienteId);
+                });
+            });
+        }
+
+        // ─── PPG ao vivo (topo do detalhe do doente) ───
+        let ppgChart = null;
+        let ppgTimer = null;
+
+        function iniciarPpgLive(pulseiraId) {
+            pararPpgLive();
+            if (!pulseiraId) return;
+            document.getElementById('ppg-live-container').style.display = 'block';
+            const ctx = document.getElementById('ppg-live-canvas').getContext('2d');
+            ppgChart = new Chart(ctx, {
+                type: 'line',
+                data: { labels: [], datasets: [
+                    { label: 'IR',  data: [], borderColor: '#38BDF8', borderWidth: 1.5, pointRadius: 0, tension: 0.15, yAxisID: 'yIr' },
+                    { label: 'RED', data: [], borderColor: '#F87171', borderWidth: 1.5, pointRadius: 0, tension: 0.15, yAxisID: 'yRed' },
+                ]},
+                options: {
+                    responsive: true, maintainAspectRatio: false, animation: false,
+                    scales: {
+                        x:    { display: false },
+                        yIr:  { display: false, position: 'left' },
+                        yRed: { display: false, position: 'right' },
+                    },
+                    plugins: { legend: { display: false }, tooltip: { enabled: false } },
+                }
+            });
+
+            async function atualizar() {
+                try {
+                    const r = await fetch(`/api/ppg_atual?pulseira_id=${encodeURIComponent(pulseiraId)}`);
+                    const d = await r.json();
+                    if (!ppgChart || !d.t || d.t.length === 0) return;
+                    ppgChart.data.labels = d.t;
+                    ppgChart.data.datasets[0].data = d.ir;
+                    ppgChart.data.datasets[1].data = d.red;
+                    ppgChart.update('none');
+                } catch (e) { /* onda ao vivo: uma falha isolada não é grave */ }
+            }
+            atualizar();
+            ppgTimer = setInterval(atualizar, 1000);
+        }
+
+        function pararPpgLive() {
+            if (ppgTimer) { clearInterval(ppgTimer); ppgTimer = null; }
+            if (ppgChart) { ppgChart.destroy(); ppgChart = null; }
+            const c = document.getElementById('ppg-live-container');
+            if (c) c.style.display = 'none';
+        }
+
+        // ─── Cartões de valores atuais (FC, SpO2, Temp, FR, Tendência) ───
+        // Cada sinal tem o SEU PRÓPRIO instante (ver /api/valores_atuais em
+        // server.py) — a FR pode estar a mostrar um valor de há 80 s ao
+        // mesmo tempo que a FC mostra um de há 1 s, e a hora por baixo de
+        // cada um deixa o enfermeiro ver isso em vez de esconder.
+        function preencherVitalCard(prefixo, dado, unidade) {
+            const elValor = document.getElementById(`va-${prefixo}-valor`);
+            const elHora  = document.getElementById(`va-${prefixo}-hora`);
+            if (!elValor || !elHora) return;
+            elValor.className = 'vital-card-valor' + (dado.estado ? ' ' + dado.estado : '');
+            elValor.textContent = (dado.valor !== null && dado.valor !== undefined)
+                ? `${dado.valor}${unidade}` : '—';
+            elHora.textContent = dado.timestamp || '—';
+        }
+
+        async function atualizarValoresAtuais(pacienteId) {
+            if (!pacienteId) return;
+            try {
+                const r = await fetch(`/api/valores_atuais?id=${encodeURIComponent(pacienteId)}`);
+                // Resposta tardia de um pedido antigo: entre o pedido partir e
+                // a resposta chegar, o doente pode ter sido desatribuído (ou
+                // outro selecionado). Sem esta verificação, os cartões
+                // reaparecem sozinhos com dados de quem já não está selecionado.
+                if (pacienteId !== currentPacienteId) return;
+                if (!r.ok) return;
+                const d = await r.json();
+                if (pacienteId !== currentPacienteId) return;
+                document.getElementById('valores-atuais-container').style.display = 'block';
+                preencherVitalCard('bpm',  d.bpm,  ' bpm');
+                preencherVitalCard('spo2', d.spo2, '%');
+                preencherVitalCard('temp', d.temp, '°C');
+                preencherVitalCard('resp', d.resp, ' rpm');
+
+                const icones = tendIconHTML('↓', d.tendencia.descida, 'Descida')
+                             + ' ' + tendIconHTML('↑', d.tendencia.subida, 'Subida');
+                document.getElementById('va-tendencia-valor').innerHTML = icones;
+                document.getElementById('va-tendencia-hora').textContent = d.tendencia.timestamp || '—';
+            } catch (e) { /* cartões ao vivo: uma falha isolada não é grave */ }
+        }
+
+        function pararValoresAtuais() {
+            const c = document.getElementById('valores-atuais-container');
+            if (c) c.style.display = 'none';
+        }
+
+        async function carregarDadosPaciente(id) {
+            try {
+                const resp = await fetch(`/api/dados_paciente?id=${id}`);
+                const data = await resp.json();
+                if (data.error) throw new Error(data.error);
+                let fotoHtml = '';
+                try {
+                    const rf = await fetch(`/api/foto_paciente?id=${id}`);
+                    if (rf.ok) { const fd = await rf.json(); if (fd.foto) fotoHtml = `<img src="data:image/png;base64,${fd.foto}" style="width:80px;height:80px;border-radius:50%;object-fit:cover;margin-right:15px;">`; }
+                } catch {}
+                document.getElementById('info-paciente').innerHTML = `
+                    <div style="display:flex;align-items:center;gap:15px;">
+                        ${fotoHtml}
+                        <div><strong>${data.nome || 'Nome não informado'}</strong><br>Idade: ${data.idade || '?'} anos<br>Nº Utente: ${data.id}</div>
+                    </div>`;
+            } catch(e) {
+                document.getElementById('info-paciente').innerHTML = 'Erro ao carregar dados do paciente.';
+            }
+        }
+
+        // Cria ou actualiza um gráfico; actualiza o visor UCI com preencherUCI()
+        function atualizarOuCriarGrafico(canvasId, labels, dados, rotulo, cor, yLabel, statsId, unidade, chartKey) {
+            if (charts[chartKey]) {
+                charts[chartKey].data.labels = labels;
+                charts[chartKey].data.datasets[0].data = dados;
+                charts[chartKey].update('none');
+            } else {
+                const ctx = document.getElementById(canvasId).getContext('2d');
+                charts[chartKey] = new Chart(ctx, {
+                    type: 'line',
+                    data: { labels, datasets: [{ label: rotulo, data: dados, borderColor: cor, tension: 0.3, fill: false, pointRadius: 1 }] },
+                    options: {
+                        responsive: true, maintainAspectRatio: false,
+                        animation: { duration: 300 },
+                        plugins: { legend: { display: false } },
+                        scales: {
+                            x: { ticks: { callback(v,i,t){ return i===0||i===t.length-1?this.getLabelForValue(v):''; }, autoSkip:false, maxRotation:0, font:{size:10} }, grid:{display:false}, title:{display:true,text:'Tempo'} },
+                            y: { title:{display:true,text:yLabel}, grid:{color:'rgba(0,0,0,0.05)'} }
+                        }
+                    }
+                });
+            }
+            preencherUCI(statsId, dados, unidade);
+        }
+
+        /* Gráfico de tensão arterial (calibração) — fora de âmbito por agora, ver
+         * comentário junto ao bloco HTML "grafico-tensoes". Mantido comentado em
+         * vez de apagado para ser retomado quando essa funcionalidade avançar.
+        function atualizarOuCriarGraficoTensoes(labels) {
+            if (charts.tensoes) {
+                charts.tensoes.data.labels = labels;
+                charts.tensoes.update('none');
+            } else {
+                const ctx = document.getElementById('grafico-tensoes').getContext('2d');
+                charts.tensoes = new Chart(ctx, {
+                    type: 'line',
+                    data: { labels, datasets: [] },
+                    options: { responsive: true, maintainAspectRatio: false, animation: { duration: 300 }, plugins: { tooltip: { callbacks: { title: () => 'Tensões não disponíveis' } } } }
+                });
+                const canvas = document.getElementById('grafico-tensoes');
+                canvas.style.opacity = '0.4';
+                canvas.style.filter  = 'grayscale(0.6)';
+                let msg = canvas.parentNode.querySelector('.msg-tensoes');
+                if (!msg) {
+                    msg = document.createElement('div');
+                    msg.className = 'msg-tensoes';
+                    Object.assign(msg.style, { textAlign:'center', color:'#64748B', fontSize:'0.8rem', marginTop:'5px' });
+                    msg.innerText = 'Histórico de tensões não registado.';
+                    canvas.parentNode.appendChild(msg);
+                }
+            }
+            // Limpar visor UCI das tensões (sem dados ainda)
+            const box = document.getElementById('stats-tensoes');
+            if (box) box.querySelectorAll('.uci-value').forEach(el => el.textContent = '—');
+        }
+        */
+
+        function atualizarOuCriarGraficoTendencia(labels, probDescida, probSubida, limiarDescida, limiarSubida) {
+            const linhaLimiar = valor => labels.map(() => valor);
+            if (charts.tendencia) {
+                charts.tendencia.data.labels = labels;
+                charts.tendencia.data.datasets[0].data = probDescida;
+                charts.tendencia.data.datasets[1].data = probSubida;
+                charts.tendencia.data.datasets[2].data = linhaLimiar(limiarDescida);
+                charts.tendencia.data.datasets[3].data = linhaLimiar(limiarSubida);
+                charts.tendencia.update('none');
+            } else {
+                const ctx = document.getElementById('grafico-tendencia').getContext('2d');
+                charts.tendencia = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels,
+                        datasets: [
+                            { label: 'Queda prevista', data: probDescida, borderColor: '#3B82F6', tension: 0.3, fill: false, pointRadius: 1 },
+                            { label: 'Subida prevista', data: probSubida, borderColor: '#EF4444', tension: 0.3, fill: false, pointRadius: 1 },
+                            { label: 'Limiar queda', data: linhaLimiar(limiarDescida), borderColor: '#3B82F6', borderDash: [5,5], pointRadius: 0, borderWidth: 1 },
+                            { label: 'Limiar subida', data: linhaLimiar(limiarSubida), borderColor: '#EF4444', borderDash: [5,5], pointRadius: 0, borderWidth: 1 },
+                        ]
+                    },
+                    options: {
+                        responsive: true, maintainAspectRatio: false, animation: { duration: 300 },
+                        scales: {
+                            x: { ticks: { callback(v,i,t){ return i===0||i===t.length-1?this.getLabelForValue(v):''; }, autoSkip:false, maxRotation:0, font:{size:10} }, grid:{display:false}, title:{display:true,text:'Tempo'} },
+                            y: { title:{display:true,text:'mmHg'}, grid:{color:'rgba(0,0,0,0.05)'} }
+                        }
+                    }
+                });
+            }
+            const box = document.getElementById('stats-tendencia');
+            if (box) {
+                const vals = box.querySelectorAll('.uci-value');
+                const maxD = probDescida.filter(v=>v!=null);
+                const maxS = probSubida.filter(v=>v!=null);
+                if (vals[0]) vals[0].textContent = maxD.length ? Math.max(...maxD).toFixed(2) : '—';
+                if (vals[1]) vals[1].textContent = maxS.length ? Math.max(...maxS).toFixed(2) : '—';
+                if (vals[2]) vals[2].textContent = limiarDescida.toFixed(2);
+                if (vals[3]) vals[3].textContent = limiarSubida.toFixed(2);
+            }
+        }
+
+        async function carregarUltimasMedicoes(id, intervalo, inicioCustom = null, fimCustom = null) {
+            document.getElementById('monitor-msg').innerHTML = '';
+            try {
+                let url = `/api/ultimas_medicoes?id=${id}&intervalo=${intervalo}`;
+                if (intervalo === 'custom' && inicioCustom && fimCustom) url += `&inicio=${encodeURIComponent(inicioCustom)}&fim=${encodeURIComponent(fimCustom)}`;
+                const resp = await fetch(url);
+                const data = await resp.json();
+
+                if (!data.labels || data.labels.length === 0) {
+                    document.getElementById('monitor-msg').innerText = 'Sem medições no intervalo selecionado.';
+                    atualizarOuCriarGrafico('grafico-fc',   [], [], 'FC (bpm)', '#EF4444', 'bpm', 'stats-fc',   'bpm', 'fc');
+                    atualizarOuCriarGrafico('grafico-spo2', [], [], 'SpO₂ (%)', '#0EA5E9', '%',   'stats-spo2', '%',   'spo2');
+                    atualizarOuCriarGrafico('grafico-temp', [], [], 'Temp (°C)', '#F59E0B', '°C', 'stats-temp', '°C',  'temp');
+                    atualizarOuCriarGrafico('grafico-resp', [], [], 'FR (resp/min)', '#8B5CF6', 'resp/min', 'stats-resp', 'resp/min', 'resp');
+                    // atualizarOuCriarGraficoTensoes([]); — tensão arterial fora de âmbito por agora
+                } else {
+                    atualizarOuCriarGrafico('grafico-fc',   data.labels, data.bpm,  'FC (bpm)',  '#EF4444', 'bpm', 'stats-fc',   'bpm', 'fc');
+                    atualizarOuCriarGrafico('grafico-spo2', data.labels, data.spo2, 'SpO₂ (%)', '#0EA5E9', '%',   'stats-spo2', '%',   'spo2');
+                    atualizarOuCriarGrafico('grafico-temp', data.labels, data.temp, 'Temp (°C)', '#F59E0B', '°C', 'stats-temp', '°C',  'temp');
+                    atualizarOuCriarGrafico('grafico-resp', data.labels, data.resp || [], 'FR (resp/min)', '#8B5CF6', 'resp/min', 'stats-resp', 'resp/min', 'resp');
+                    // atualizarOuCriarGraficoTensoes(data.labels); — tensão arterial fora de âmbito por agora
+                }
+                try {
+                    let urlT = `/api/tendencia_historico?id=${id}&intervalo=${intervalo}`;
+                    if (intervalo === 'custom' && inicioCustom && fimCustom) urlT += `&inicio=${encodeURIComponent(inicioCustom)}&fim=${encodeURIComponent(fimCustom)}`;
+                    const dataT = await (await fetch(urlT)).json();
+                    atualizarOuCriarGraficoTendencia(dataT.labels || [], dataT.score_descida || [], dataT.score_subida || [], dataT.limiar_descida, dataT.limiar_subida);
+                } catch(e) { console.error('Erro ao carregar tendência:', e); }
+                graficosInicializados = true;
+                setTimeout(redimensionarGraficos, 100);
+            } catch(e) {
+                console.error('Erro ao carregar medições:', e);
+                document.getElementById('monitor-msg').innerHTML = 'Erro ao carregar os dados.';
+            }
+        }
+
+        async function inicializarSlider() {
+            if (!currentPacienteId) return;
+            try {
+                const resp = await fetch(`/api/atribuicao_activa?id=${currentPacienteId}`);
+                const data = await resp.json();
+                if (!data.data_inicio) return;
+                dataInicioAtribuicao = new Date(data.data_inicio);
+            } catch(e) { console.error(e); return; }
+
+            const agora = new Date();
+            if (slider) slider.destroy();
+            const sliderDiv = document.getElementById('slider-duplo');
+            noUiSlider.create(sliderDiv, { start: [0, 100], connect: true, range: { min: 0, max: 100 }, step: 0.1, tooltips: false });
+            slider = sliderDiv.noUiSlider;
+            slider.on('update', values => {
+                const pI = parseFloat(values[0]), pF = parseFloat(values[1]);
+                if (modoTempoReal && pF !== 100) {
+                    modoTempoReal = false;
+                    const btn = document.getElementById('toggle_modo');
+                    btn.innerHTML = '⏹️ Tempo Real OFF'; btn.style.background = '#64748B';
+                    if (intervaloAtualizacao) { clearInterval(intervaloAtualizacao); intervaloAtualizacao = null; }
+                }
+                const ini = dataInicioAtribuicao.getTime();
+                const dur = new Date().getTime() - ini;
+                document.getElementById('inicio-label').innerHTML = new Date(ini + pI/100*dur).toLocaleString();
+                document.getElementById('fim-label').innerHTML    = new Date(ini + pF/100*dur).toLocaleString();
+            });
+        }
+
+        function obterDatasDoSlider() {
+            if (!slider || !dataInicioAtribuicao) return null;
+            const vals  = slider.get();
+            const pI    = parseFloat(vals[0]);
+            const pF    = modoTempoReal ? 100 : parseFloat(vals[1]);
+            const ini   = dataInicioAtribuicao.getTime();
+            const dur   = new Date().getTime() - ini;
+            return { inicio: new Date(ini + pI/100*dur), fim: new Date(ini + pF/100*dur) };
+        }
+
+        async function carregarUltimasMedicoesComSlider() {
+            if (!currentPacienteId || !dataInicioAtribuicao) return;
+            const datas = obterDatasDoSlider();
+            if (!datas) return;
+            await carregarUltimasMedicoes(currentPacienteId, 'custom', datas.inicio.toISOString().slice(0,19), datas.fim.toISOString().slice(0,19));
+        }
+
+        function iniciarAtualizacaoTempoReal() {
+            if (intervaloAtualizacao) clearInterval(intervaloAtualizacao);
+            if (!modoTempoReal) return;
+            intervaloAtualizacao = setInterval(() => {
+                if (!modoTempoReal || !currentPacienteId) return;
+                if (!document.getElementById('tab-monitor').classList.contains('active')) return;
+                if (slider && dataInicioAtribuicao) slider.set([null, 100]);
+                carregarUltimasMedicoesComSlider();
+                atualizarValoresAtuais(currentPacienteId);
+            }, 1000);
+        }
+
+        function redimensionarGraficos() { Object.values(charts).forEach(ch => { if (ch) ch.resize(); }); }
+        window.addEventListener('resize', redimensionarGraficos);
+
+        // ─── HISTÓRICO ──────────────────────────────────────────────────────────
+        let chartFCH = null, chartSPOH = null, chartTH = null, chartRespH = null, chartTensH = null, chartTendH = null;
+        let pacienteHistoricoSelecionado = null;
+        let intervaloHistorico = '24h';
+        let nomePacienteHistorico = '';
+        let todosPacientesHistorico = [];
+        let filtroHistorico = '';
+
+        async function carregarTodosPacientes() {
+            try {
+                const resp = await fetch('/api/todos_pacientes');
+                const data = await resp.json();
+                todosPacientesHistorico = data.pacientes;
+                document.getElementById('btnVerGraficosHistorico').style.display = 'none';
+                pesquisarHistorico();
+                const inp = document.getElementById('pesquisaHistorico');
+                inp.removeEventListener('input', handlePesquisaHistorico);
+                inp.addEventListener('input', handlePesquisaHistorico);
+            } catch(e) { console.error(e); }
+        }
+
+        function handlePesquisaHistorico(e) { filtroHistorico = e.target.value; pesquisarHistorico(); }
+
+        function pesquisarHistorico() {
+            document.getElementById('info-paciente-historico').innerHTML = 'Selecione um paciente para ver os dados.';
+            document.getElementById('historico-conteudo').innerHTML = 'Selecione um paciente para ver o histórico completo.';
+            document.getElementById('btnVerGraficosHistorico').style.display = 'none';
+            const termo = filtroHistorico.toLowerCase();
+            const container = document.getElementById('lista-todos-pacientes');
+            const filtrados = todosPacientesHistorico.filter(p =>
+                p.id.toLowerCase().includes(termo) || (p.nome && p.nome.toLowerCase().includes(termo))
+            );
+            container.innerHTML = filtrados.length === 0
+                ? '<p>Nenhum paciente encontrado.</p>'
+                : filtrados.map(p => `<div class="historico-paciente-item" data-id="${p.id}">${p.id} - ${p.nome||'Sem nome'} (${p.data_registo})</div>`).join('');
+            container.querySelectorAll('.historico-paciente-item').forEach(el => {
+                el.addEventListener('click', () => carregarMedicoesPaciente(el.dataset.id));
+            });
+        }
+
+        async function carregarMedicoesPaciente(id) {
+            pacienteHistoricoSelecionado = id;
+            document.getElementById('btnVerGraficosHistorico').style.display = 'block';
+            try {
+                const resp = await fetch(`/api/dados_paciente?id=${id}`);
+                const data = await resp.json();
+                let fotoHtml = '';
+                try { const rf = await fetch(`/api/foto_paciente?id=${id}`); if(rf.ok){const fd=await rf.json();if(fd.foto)fotoHtml=`<img src="data:image/png;base64,${fd.foto}" style="width:80px;height:80px;border-radius:50%;object-fit:cover;margin-right:15px;">`; } } catch{}
+                document.getElementById('info-paciente-historico').innerHTML = `<div style="display:flex;align-items:center;gap:15px;">${fotoHtml}<div><strong>${data.nome||'Nome não informado'}</strong><br>Idade: ${data.idade||'?'} anos<br>Nº Utente: ${data.id}</div></div>`;
+                nomePacienteHistorico = data.nome || id;
+                document.getElementById('graficoPacienteNome').innerText = nomePacienteHistorico;
+            } catch(e) { document.getElementById('info-paciente-historico').innerHTML = 'Erro ao carregar dados.'; }
+
+            try {
+                const resp = await fetch(`/api/medicoes_completas_paciente?id=${id}`);
+                const data = await resp.json();
+                const container = document.getElementById('historico-conteudo');
+                if (!data.visitas || data.visitas.length === 0) { container.innerHTML = '<p>Sem medições registadas.</p>'; return; }
+                const medPorPulseira = {};
+                data.medicoes.forEach(m => { if (!medPorPulseira[m.pulseira_id]) medPorPulseira[m.pulseira_id]=[]; medPorPulseira[m.pulseira_id].push(m); });
+                const parse = s => { const [d,h]=s.split(' '); const [di,mi,ai]=d.split('/'); return new Date(`${ai}-${mi}-${di}T${h}:00`).getTime(); };
+                const visitasOrd = [...data.visitas].sort((a,b)=>{if(a.ativa&&!b.ativa)return -1;if(!a.ativa&&b.ativa)return 1;return parse(b.data_inicio)-parse(a.data_inicio);});
+                let html = '';
+                for (const v of visitasOrd) {
+                    const meds = medPorPulseira[v.pulseira_id]||[];
+                    if (!meds.length) continue;
+                    const uid = `visita-${v.pulseira_id}-${v.data_inicio.replace(/[/: ]/g,'-')}`;
+                    html += `<div style="margin-bottom:24px;border:1px solid #DDE8F5;border-radius:20px;border-left:3px solid #0EA5E9;padding-left:12px;">
+                        <div class="visita-header" data-target="${uid}" style="cursor:pointer;display:flex;align-items:center;justify-content:space-between;margin:8px 0;">
+                            <div style="display:flex;align-items:center;gap:8px;"><span class="visita-toggle" style="font-weight:bold;font-size:1.2rem;">▶</span><h4>${v.pulseira_id} (${v.data_inicio} → ${v.data_fim||'?'})</h4></div>
+                            <button class="btn-graficos-visita" data-pulseira="${v.pulseira_id}" data-inicio="${v.data_inicio}" data-fim="${v.data_fim||''}">📊 Ver Gráficos</button>
+                        </div>
+                        <div id="${uid}" style="display:none; overflow-x:auto; max-width:100%;">
+                            <table style="width:100%;min-width:480px;border-collapse:collapse;margin-top:8px;white-space:nowrap;">
+                                <thead><tr><th>Data/Hora</th><th>Pulseira</th><th>FC</th><th>SpO₂</th><th>Temp</th><th>FR</th></tr></thead>
+                                <tbody>${meds.map(m=>`<tr><td>${m.timestamp}</td><td>${m.pulseira_id}</td><td>${m.bpm??'—'}</td><td>${m.spo2??'—'}</td><td>${m.temp??'—'}</td><td>${m.resp??'—'}</td></tr>`).join('')}</tbody>
+                            </table>
+                        </div></div>`;
+                }
+                container.innerHTML = html;
+                container.querySelectorAll('.visita-header').forEach(h => {
+                    h.addEventListener('click', e => {
+                        if (e.target.classList.contains('btn-graficos-visita')) return;
+                        const d = document.getElementById(h.dataset.target);
+                        const t = h.querySelector('.visita-toggle');
+                        d.style.display = d.style.display==='none' ? 'block' : 'none';
+                        t.textContent  = d.style.display==='none' ? '▶' : '▼';
+                    });
+                });
+                container.querySelectorAll('.btn-graficos-visita').forEach(btn => {
+                    btn.addEventListener('click', e => { e.stopPropagation(); abrirGraficosVisita(id, btn.dataset.pulseira, btn.dataset.inicio, btn.dataset.fim); });
+                });
+            } catch(e) { console.error(e); }
+        }
+
+        async function abrirGraficosVisita(pacienteId, pulseiraId, dataInicio, dataFim) {
+            document.getElementById('graficoPacienteNome').innerText = `${pacienteId} (${pulseiraId} - ${dataInicio} a ${dataFim})`;
+            document.getElementById('modalGraficosHistorico').style.display = 'flex';
+            try {
+                const url = `/api/ultimas_medicoes_visita?id=${pacienteId}&pulseira_id=${pulseiraId}&data_inicio=${encodeURIComponent(dataInicio)}&data_fim=${encodeURIComponent(dataFim)}`;
+                const resp = await fetch(url);
+                atualizarGraficosModalHistorico(await resp.json());
+            } catch(e) { document.getElementById('grafico-msg-historico').innerText='Erro ao carregar gráficos.'; }
+            try {
+                const urlT = `/api/tendencia_historico?id=${pacienteId}&pulseira_id=${pulseiraId}&data_inicio=${encodeURIComponent(dataInicio)}&data_fim=${encodeURIComponent(dataFim)}`;
+                const respT = await fetch(urlT);
+                atualizarGraficoTendenciaHistorico(await respT.json());
+            } catch(e) { console.error(e); }
+        }
+
+        function criarOuAtualizar(chartVar, canvasId, labels, dados, rotulo, cor, yLabel) {
+            const ctx = document.getElementById(canvasId).getContext('2d');
+            if (chartVar) chartVar.destroy();
+            return new Chart(ctx, {
+                type:'line',
+                data:{ labels, datasets:[{label:rotulo,data:dados,borderColor:cor,tension:0.3,fill:false}] },
+                options:{ responsive:true, maintainAspectRatio:false, scales:{y:{title:{display:true,text:yLabel}}} }
+            });
+        }
+
+        function atualizarGraficosModalHistorico(data) {
+            const msg = document.getElementById('grafico-msg-historico');
+            if (!data.labels || !data.labels.length) { msg.innerText='Sem medições.'; [chartFCH,chartSPOH,chartTH,chartRespH].forEach(c=>{if(c)c.destroy();}); chartFCH=chartSPOH=chartTH=chartRespH=null; return; }
+            msg.innerText = '';
+            chartFCH  = criarOuAtualizar(chartFCH,  'grafico-fc-historico',     data.labels, data.bpm,  'FC',   '#EF4444', 'bpm');
+            chartSPOH = criarOuAtualizar(chartSPOH, 'grafico-spo2-historico',   data.labels, data.spo2, 'SpO₂','#0EA5E9', '%');
+            chartTH   = criarOuAtualizar(chartTH,   'grafico-temp-historico',   data.labels, data.temp, 'Temp','#F59E0B', '°C');
+            chartRespH = criarOuAtualizar(chartRespH, 'grafico-resp-historico', data.labels, data.resp || [], 'FR','#8B5CF6', 'resp/min');
+            // Gráfico de tensão arterial (calibração) fora de âmbito por agora — ver
+            // comentário junto ao bloco HTML "grafico-tensoes-historico".
+            // const ctx = document.getElementById('grafico-tensoes-historico').getContext('2d');
+            // if (chartTensH) chartTensH.destroy();
+            // chartTensH = new Chart(ctx,{type:'line',data:{labels:data.labels,datasets:[]},options:{responsive:true,maintainAspectRatio:false}});
+        }
+
+        function atualizarGraficoTendenciaHistorico(data) {
+            const ctx = document.getElementById('grafico-tendencia-historico').getContext('2d');
+            if (chartTendH) chartTendH.destroy();
+            if (!data.labels || !data.labels.length) {
+                chartTendH = new Chart(ctx,{type:'line',data:{labels:[],datasets:[]},options:{responsive:true,maintainAspectRatio:false}});
+                return;
+            }
+            const linhaLimiar = valor => data.labels.map(() => valor);
+            chartTendH = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: data.labels,
+                    datasets: [
+                        { label: 'Queda prevista', data: data.score_descida, borderColor: '#3B82F6', tension: 0.3, fill: false, pointRadius: 1 },
+                        { label: 'Subida prevista', data: data.score_subida, borderColor: '#EF4444', tension: 0.3, fill: false, pointRadius: 1 },
+                        { label: `Limiar queda (${data.limiar_descida.toFixed(2)})`, data: linhaLimiar(data.limiar_descida), borderColor: '#3B82F6', borderDash: [5,5], pointRadius: 0, borderWidth: 1 },
+                        { label: `Limiar subida (${data.limiar_subida.toFixed(2)})`, data: linhaLimiar(data.limiar_subida), borderColor: '#EF4444', borderDash: [5,5], pointRadius: 0, borderWidth: 1 },
+                    ]
+                },
+                options: { responsive: true, maintainAspectRatio: false, scales: { y: { title: { display: true, text: 'mmHg' } } } }
+            });
+        }
+
+        async function carregarMedicoesGraficoHistorico(id, intervalo='24h', ini=null, fim=null) {
+            let url = `/api/ultimas_medicoes?id=${id}&intervalo=${intervalo}`;
+            if (intervalo==='custom'&&ini&&fim) url+=`&inicio=${encodeURIComponent(ini)}&fim=${encodeURIComponent(fim)}`;
+            const data = await (await fetch(url)).json();
+            atualizarGraficosModalHistorico(data);
+            let urlT = `/api/tendencia_historico?id=${id}&intervalo=${intervalo}`;
+            if (intervalo==='custom'&&ini&&fim) urlT+=`&inicio=${encodeURIComponent(ini)}&fim=${encodeURIComponent(fim)}`;
+            try { atualizarGraficoTendenciaHistorico(await (await fetch(urlT)).json()); } catch(e) { console.error(e); }
+        }
+
+        function initIntervalControlsHistorico() {
+            const pills = document.querySelectorAll('#modalGraficosHistorico .interval-pill');
+            const cr = document.getElementById('custom-range-historico');
+            pills.forEach(pill => {
+                pill.removeEventListener('click', pill._h);
+                pill._h = () => {
+                    intervaloHistorico = pill.dataset.interval;
+                    pills.forEach(p => p.classList.remove('active')); pill.classList.add('active');
+                    cr.style.display = intervaloHistorico==='custom' ? 'flex' : 'none';
+                    if (intervaloHistorico!=='custom' && pacienteHistoricoSelecionado) carregarMedicoesGraficoHistorico(pacienteHistoricoSelecionado, intervaloHistorico);
+                };
+                pill.addEventListener('click', pill._h);
+            });
+            const apBtn = document.getElementById('aplicar_custom_historico');
+            apBtn.removeEventListener('click', apBtn._h);
+            apBtn._h = () => { const i=document.getElementById('inicio_historico').value, f=document.getElementById('fim_historico').value; if(i&&f&&pacienteHistoricoSelecionado) carregarMedicoesGraficoHistorico(pacienteHistoricoSelecionado,'custom',i,f); };
+            apBtn.addEventListener('click', apBtn._h);
+        }
+
+        document.getElementById('btnVerGraficosHistorico').onclick = () => {
+            if (!pacienteHistoricoSelecionado) { alert('Selecione um paciente primeiro.'); return; }
+            document.getElementById('graficoPacienteNome').innerText = nomePacienteHistorico;
+            document.getElementById('modalGraficosHistorico').style.display = 'flex';
+            initIntervalControlsHistorico();
+            intervaloHistorico = '24h';
+            document.querySelectorAll('#modalGraficosHistorico .interval-pill').forEach(p=>p.classList.remove('active'));
+            document.querySelector('#modalGraficosHistorico .interval-pill[data-interval="24h"]').classList.add('active');
+            document.getElementById('custom-range-historico').style.display = 'none';
+            carregarMedicoesGraficoHistorico(pacienteHistoricoSelecionado,'24h');
+        };
+        document.querySelector('#modalGraficosHistorico .close-modal-graficos').onclick = () => { document.getElementById('modalGraficosHistorico').style.display='none'; };
+
+        // ─── CONFIGURAÇÃO ────────────────────────────────────────────────────────
+        async function carregarConfiguracoes() {
+            try {
+                const data = await (await fetch('/api/configuracoes')).json();
+                ['bpm_warning_min','bpm_warning_max','bpm_danger_min','bpm_danger_max',
+                 'spo2_warning_min','spo2_danger_min',
+                 'temp_warning_min','temp_warning_max','temp_danger_min','temp_danger_max',
+                 'resp_warning_min','resp_warning_max','resp_danger_min','resp_danger_max'].forEach(id => {
+                    const el = document.getElementById(id); if(el) el.value = data[id];
+                });
+            } catch(e) { console.error(e); }
+        }
+
+        async function salvarConfiguracoes() {
+            const ids = ['bpm_warning_min','bpm_warning_max','bpm_danger_min','bpm_danger_max','spo2_warning_min','spo2_danger_min','temp_warning_min','temp_warning_max','temp_danger_min','temp_danger_max','resp_warning_min','resp_warning_max','resp_danger_min','resp_danger_max'];
+            const payload = Object.fromEntries(ids.map(id => [id, parseFloat(document.getElementById(id).value)]));
+            await fetch('/api/configuracoes',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+            alert('Configurações salvas!');
+            carregarVisaoGeral();
+        }
+
+        // ─── TROCAR ABAS ────────────────────────────────────────────────────────
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tabId = btn.dataset.tab;
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+                document.getElementById(`tab-${tabId}`).classList.add('active');
+                if (tabId==='geral')    carregarVisaoGeral();
+                if (tabId==='monitor')  { document.getElementById('info-paciente').innerHTML='Selecione um paciente'; document.getElementById('btnDesatribuir').hidden = true; currentPacienteId = null; pararPpgLive(); pararValoresAtuais(); document.getElementById('monitor-graficos-container').style.display='none'; carregarPacientesMonitor(); setTimeout(redimensionarGraficos,100); }
+                if (tabId==='historico'){ document.getElementById('historico-conteudo').innerHTML='Selecione um paciente para ver o histórico completo.'; carregarTodosPacientes(); }
+                if (tabId==='config')   carregarConfiguracoes();
+            });
+        });
+
+        // ─── MODAL ATRIBUIÇÃO ───────────────────────────────────────────────────
+        const modalAtribuir = document.getElementById('modalAtribuir');
+        const closeModal    = document.querySelector('#modalAtribuir .close-modal');
+        let intervalLeitura = null, cartaoAtual = null;
+
+        function iniciarLeituraCartaoModal() {
+            if (intervalLeitura) clearInterval(intervalLeitura);
+            async function ler() {
+                try {
+                    const d = await (await fetch('/ler_cartao')).json();
+                    if (d.paciente_id && d.paciente_id !== '') {
+                        if (cartaoAtual !== d.paciente_id) {
+                            cartaoAtual = d.paciente_id;
+                            document.getElementById('paciente_id').value = d.paciente_id;
+                            if (d.nome)   document.getElementById('nome').value  = d.nome;
+                            if (d.sexo)   document.getElementById('sexo').value  = d.sexo;
+                            if (d.idade)  document.getElementById('idade').value = d.idade;
+                            if (d.foto)   document.getElementById('foto').value  = d.foto;
+                            document.getElementById('readerTextModal').innerHTML = `Cartão detetado: ${d.paciente_id}`;
+                        }
+                    } else {
+                        if (cartaoAtual !== null) {
+                            cartaoAtual = null;
+                            document.getElementById('readerTextModal').innerHTML = 'A aguardar cartão...';
+                            ['paciente_id','nome','sexo','idade','foto'].forEach(id => { const el=document.getElementById(id); if(el) el.value=''; });
+                        }
+                    }
+                } catch(e) {}
+            }
+            ler(); intervalLeitura = setInterval(ler, 1000);
+        }
+
+        function pararLeituraCartaoModal() { if (intervalLeitura) clearInterval(intervalLeitura); intervalLeitura = null; cartaoAtual = null; }
+
+        function limparModal() { ['pulseira_input','paciente_id','nome','idade','foto','pressao_sistolica','pressao_diastolica'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';}); document.getElementById('sexo').value=''; }
+
+        document.getElementById('btnAdicionarPaciente').onclick = () => { modalAtribuir.style.display='flex'; iniciarLeituraCartaoModal(); initClearButtons(); };
+        closeModal.onclick = () => { modalAtribuir.style.display='none'; pararLeituraCartaoModal(); limparModal(); };
+        window.onclick = e => { if (e.target===modalAtribuir) { modalAtribuir.style.display='none'; pararLeituraCartaoModal(); limparModal(); } if (e.target===document.getElementById('modalGraficosHistorico')) document.getElementById('modalGraficosHistorico').style.display='none'; };
+
+        async function desatribuirPaciente() {
+            if (!currentPacienteId) { alert('Nenhum paciente selecionado.'); return; }
+            if (!confirm(`Tem a certeza que pretende desatribuir a pulseira do paciente ${currentPacienteId}?`)) return;
+            try {
+                const r = await (await fetch('/api/desatribuir',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({paciente_id:currentPacienteId})})).json();
+                if (r.status==='ok') {
+                    // Limpar TUDO antes do alert (bloqueante) e do pedido de
+                    // rede seguinte: senão a onda de PPG e o resto ficam
+                    // visíveis, parados, enquanto o utilizador não fecha o
+                    // alert e a lista de pacientes não regressa do servidor.
+                    currentPacienteId = null;
+                    pararPpgLive();
+                    pararValoresAtuais();
+                    document.getElementById('info-paciente').innerHTML = 'Selecione um paciente';
+                    document.getElementById('btnDesatribuir').hidden = true;
+                    document.getElementById('monitor-graficos-container').style.display = 'none';
+                    alert('Pulseira desatribuída com sucesso!');
+                    await carregarPacientesMonitor();
+                    carregarVisaoGeral();
+                } else { alert('Erro: ' + (r.motivo||'Tente novamente')); }
+            } catch(e) { alert('Erro de comunicação.'); }
+        }
+
+        function initClearButtons() {
+            document.querySelectorAll('.clear-input').forEach(btn => {
+                btn.removeEventListener('click', btn._ch);
+                btn._ch = e => { e.stopPropagation(); const el=document.getElementById(btn.dataset.target); if(el) el.value=''; };
+                btn.addEventListener('click', btn._ch);
+            });
+        }
+
+        document.getElementById('formAtribuirModal').addEventListener('submit', async e => {
+            e.preventDefault();
+            const btn = e.target.querySelector('button'); btn.disabled=true; btn.textContent='A processar...';
+            try {
+                const r = await (await fetch('/atribuir',{method:'POST',body:new FormData(e.target)})).json();
+                if (r.status==='ok') {
+                    alert('Atribuição concluída!'); modalAtribuir.style.display='none'; pararLeituraCartaoModal(); limparModal();
+                    carregarVisaoGeral(); carregarPacientesMonitor(); carregarTodosPacientes();
+                } else { alert('Erro: '+(r.motivo||'Tente novamente')); }
+            } catch { alert('Erro de comunicação.'); }
+            btn.disabled=false; btn.textContent='Confirmar Atribuição';
+        });
+
+        // ─── CLEAR SEARCH ────────────────────────────────────────────────────────
+        function initClearSearch() {
+            document.querySelectorAll('.clear-search').forEach(btn => {
+                btn.removeEventListener('click', btn._cs);
+                btn._cs = e => {
+                    e.stopPropagation();
+                    const inp = document.getElementById(btn.dataset.target);
+                    if (!inp) return;
+                    inp.value = '';
+                    inp.dispatchEvent(new Event('input',{bubbles:true}));
+                    inp.focus();
+                };
+                btn.addEventListener('click', btn._cs);
+            });
+        }
+
+        // ─── MARQUEE PLACEHOLDER ────────────────────────────────────────────────
+        function initPlaceholderMarquee() {
+            document.querySelectorAll('.input-wrapper-placeholder').forEach(wrapper => {
+                const input = wrapper.querySelector('input');
+                const span  = wrapper.querySelector('.floating-placeholder');
+                if (!input || !span) return;
+                const update = () => {
+                    const hasText = input.value !== '';
+                    span.style.display = hasText ? 'none' : 'block';
+                    if (!hasText && document.activeElement===input) span.classList.add('marquee'); else span.classList.remove('marquee');
+                };
+                input.removeEventListener('focus', update); input.addEventListener('focus', update);
+                input.removeEventListener('blur',  update); input.addEventListener('blur',  update);
+                input.removeEventListener('input', update); input.addEventListener('input', update);
+                update();
+            });
+        }
+
+        // ─── ARRANQUE ────────────────────────────────────────────────────────────
+        carregarVisaoGeral();
+        setInterval(() => { if (document.getElementById('tab-geral').classList.contains('active')) carregarVisaoGeral(); }, 5000);
+        document.getElementById('btnDesatribuir').addEventListener('click', desatribuirPaciente);
+        document.getElementById('aplicar_monitor').addEventListener('click', carregarUltimasMedicoesComSlider);
+        document.getElementById('toggle_modo').addEventListener('click', () => {
+            modoTempoReal = !modoTempoReal;
+            const btn = document.getElementById('toggle_modo');
+            if (modoTempoReal) { btn.innerHTML='⏱️ Tempo Real ON'; btn.style.background='#0EA5E9'; if(slider&&dataInicioAtribuicao)slider.set([null,100]); iniciarAtualizacaoTempoReal(); carregarUltimasMedicoesComSlider(); }
+            else               { btn.innerHTML='⏹️ Tempo Real OFF'; btn.style.background='#64748B'; if(intervaloAtualizacao){clearInterval(intervaloAtualizacao);intervaloAtualizacao=null;} carregarUltimasMedicoesComSlider(); }
+        });
+        iniciarAtualizacaoTempoReal();
+        document.addEventListener('DOMContentLoaded', () => { initClearSearch(); initPlaceholderMarquee(); });
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.addEventListener('click', () => setTimeout(initPlaceholderMarquee, 100)));
+    </script>
+</body>
+</html>

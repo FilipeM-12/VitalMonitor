@@ -1,0 +1,37 @@
+{
+  "modo": "classificador",
+  "direcao": "subida",
+  "best_cv": 0.7983706244788532,
+  "best_params": {
+    "n_estimators": 600,
+    "learning_rate": 0.02424827034683031,
+    "max_depth": 3,
+    "min_child_weight": 11,
+    "subsample": 0.6554479117438845,
+    "colsample_bytree": 0.9271946265793404,
+    "gamma": 0.21179473992118247,
+    "reg_alpha": 0.12346563129489714,
+    "reg_lambda": 2.556288005120405
+  },
+  "feats": [
+    "hr_mean_z",
+    "hr_lag1",
+    "area_mean_global_z",
+    "w50_global_z",
+    "alpha_womersley_global_z",
+    "ppg_crest_time_global_z",
+    "ppg_decay_time_global_z",
+    "age",
+    "gender_bin",
+    "d_hr_mean_z_2m",
+    "d_hr_mean_z_5m",
+    "d_hr_mean_z_10m",
+    "d_area_mean_global_z_2m",
+    "d_area_mean_global_z_5m",
+    "d_area_mean_global_z_10m",
+    "d_alpha_womersley_global_z_2m",
+    "d_alpha_womersley_global_z_5m",
+    "d_alpha_womersley_global_z_10m",
+    "vol_hr_mean_z_5m"
+  ]
+}

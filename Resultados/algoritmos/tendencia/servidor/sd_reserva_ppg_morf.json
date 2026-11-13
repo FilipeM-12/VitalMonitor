@@ -1,0 +1,100 @@
+{
+ "data": "2026-10-14",
+ "tabela": "ppg",
+ "construtor": "/home/filipe/Desktop/Tese/algoritmo-ml/Tentativa_22_10/tendencia_tempo_fixo/construir_tabela_ppg_morf.py",
+ "reserva": {
+  "hr_mean": 1.529912296622039,
+  "alpha_womersley": 2.9763542759689265,
+  "area_mean": 0.3859974135154677,
+  "w50": 0.00491838482120816,
+  "ppg_crest_time": 0.0040327021397326985,
+  "ppg_decay_time": 0.013186126685963789,
+  "apg_b_a": 0.03514147170017321,
+  "apg_d_a": 0.030776941875933155,
+  "w25": 0.006515124416097769,
+  "w75": 0.0033885883284779277,
+  "ppg_max_slope": 0.2703413773680756,
+  "ppg_max_slope_norm": 0.18221490511056565,
+  "reflection_index": 0.0659023520065862
+ },
+ "casos": {
+  "hr_mean": {
+   "sessoes": 33968,
+   "indefinido": 7428,
+   "nulo": 3,
+   "abaixo_de_1e6": 0
+  },
+  "alpha_womersley": {
+   "sessoes": 33968,
+   "indefinido": 7428,
+   "nulo": 0,
+   "abaixo_de_1e6": 0
+  },
+  "area_mean": {
+   "sessoes": 33968,
+   "indefinido": 7428,
+   "nulo": 0,
+   "abaixo_de_1e6": 0
+  },
+  "w50": {
+   "sessoes": 33968,
+   "indefinido": 7428,
+   "nulo": 46,
+   "abaixo_de_1e6": 0
+  },
+  "ppg_crest_time": {
+   "sessoes": 33968,
+   "indefinido": 7428,
+   "nulo": 155,
+   "abaixo_de_1e6": 81
+  },
+  "ppg_decay_time": {
+   "sessoes": 33968,
+   "indefinido": 7428,
+   "nulo": 129,
+   "abaixo_de_1e6": 0
+  },
+  "apg_b_a": {
+   "sessoes": 33968,
+   "indefinido": 7428,
+   "nulo": 3,
+   "abaixo_de_1e6": 0
+  },
+  "apg_d_a": {
+   "sessoes": 33968,
+   "indefinido": 7723,
+   "nulo": 33,
+   "abaixo_de_1e6": 0
+  },
+  "w25": {
+   "sessoes": 33968,
+   "indefinido": 7428,
+   "nulo": 40,
+   "abaixo_de_1e6": 1
+  },
+  "w75": {
+   "sessoes": 33968,
+   "indefinido": 7428,
+   "nulo": 63,
+   "abaixo_de_1e6": 3
+  },
+  "ppg_max_slope": {
+   "sessoes": 33968,
+   "indefinido": 7428,
+   "nulo": 0,
+   "abaixo_de_1e6": 0
+  },
+  "ppg_max_slope_norm": {
+   "sessoes": 33968,
+   "indefinido": 7428,
+   "nulo": 1,
+   "abaixo_de_1e6": 0
+  },
+  "reflection_index": {
+   "sessoes": 33968,
+   "indefinido": 10353,
+   "nulo": 260,
+   "abaixo_de_1e6": 1
+  }
+ }
+}

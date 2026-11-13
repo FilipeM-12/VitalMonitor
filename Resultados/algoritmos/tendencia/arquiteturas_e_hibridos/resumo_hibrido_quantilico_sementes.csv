@@ -1,0 +1,13 @@
+direcao,semente,modelo,auc_xgb,auc_hibrido,ganho,ic95_inf,ic95_sup,exclui_zero
+descida,0,BiLSTM+XGB,0.8342,0.8452,0.011,-0.0028,0.0248,False
+descida,0,BiTCN+XGB,0.8342,0.8416,0.0074,-0.0023,0.0164,False
+descida,1,BiLSTM+XGB,0.8341,0.845,0.0109,0.0019,0.0198,True
+descida,1,BiTCN+XGB,0.8341,0.8392,0.0051,-0.0043,0.0134,False
+descida,2,BiLSTM+XGB,0.8355,0.8385,0.003,-0.0051,0.0117,False
+descida,2,BiTCN+XGB,0.8355,0.8395,0.004,-0.0053,0.0139,False
+subida,0,BiLSTM+XGB,0.8286,0.8303,0.0017,-0.0092,0.0089,False
+subida,0,BiTCN+XGB,0.8286,0.8238,-0.0047,-0.014,0.003,False
+subida,1,BiLSTM+XGB,0.829,0.8292,0.0002,-0.0125,0.0081,False
+subida,1,BiTCN+XGB,0.829,0.8311,0.0021,-0.0101,0.0125,False
+subida,2,BiLSTM+XGB,0.827,0.8321,0.005,-0.0066,0.0129,False
+subida,2,BiTCN+XGB,0.827,0.8258,-0.0013,-0.0111,0.0071,False

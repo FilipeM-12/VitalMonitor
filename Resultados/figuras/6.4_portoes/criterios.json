@@ -1,0 +1,34 @@
+{
+ "limites": {
+  "MIN_BATIMENTOS": 8,
+  "MIN_BATIMENTOS_KEPT": 6,
+  "CV_RITMO_MAX": 0.25,
+  "DISPERSAO_MAX": 0.05,
+  "HR_MIN": 45,
+  "HR_MAX": 140
+ },
+ "aceite": {
+  "veredito": "aceite",
+  "batimentos": 25,
+  "fc_mediana_bpm": 107.1428569515306,
+  "cv_ritmo": 0.22032573814808998,
+  "desvio_maximo_em_amplitudes": 1.734443646548356,
+  "batimentos_retidos": 24,
+  "dispersao_tempo_de_subida_s": 0.023091605016157327,
+  "mediana": 1.9826139322477367,
+  "amplitude_do_pulso": 0.25679772480663154,
+  "amostra_do_desvio_maximo": 674
+ },
+ "rejeitada": {
+  "veredito": "artefacto",
+  "batimentos": 19,
+  "fc_mediana_bpm": 106.38297853478194,
+  "cv_ritmo": 0.2093655094348318,
+  "desvio_maximo_em_amplitudes": 8.263524198656318,
+  "batimentos_retidos": 18,
+  "dispersao_tempo_de_subida_s": 0.015058732752086596,
+  "mediana": 1.97508167001137,
+  "amplitude_do_pulso": 0.26931808755260866,
+  "amostra_do_desvio_maximo": 1397
+ }
+}

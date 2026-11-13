@@ -1,0 +1,15 @@
+{
+ "janelas": 33191,
+ "sujeitos": 40,
+ "acerto": 0.56,
+ "ic95_sujeito": [
+  0.483,
+  0.625
+ ],
+ "fracao_subidas": 0.422,
+ "acerto_sempre_classe_mais_frequente": 0.578,
+ "acerto_subidas": 0.506,
+ "acerto_descidas": 0.6,
+ "acuidade_equilibrada": 0.553,
+ "auc_direcao": 0.565
+}

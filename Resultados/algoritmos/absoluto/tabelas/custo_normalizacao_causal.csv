@@ -1,0 +1,6 @@
+variante,mae_causal,mae_doente_inteiro,custo,n_causal,n_doente_inteiro,sujeitos_causal,sujeitos_doente_inteiro,ganho_vs_ancora_causal,ganho_vs_ancora_doente_inteiro
+baseline,12.0697,12.0904,-0.0208,50203,50203,40,40,0.1244,0.1037
+nk,6.706,6.7068,-0.0008,6113,6173,20,21,0.0787,0.0577
+nk2,9.2419,9.1592,0.0827,17607,17635,28,29,0.1173,0.1937
+fft,12.2187,12.1562,0.0625,49402,49402,40,40,0.0264,0.0889
+clinicas,11.9195,11.9534,-0.0339,50203,50203,40,40,0.2746,0.2407

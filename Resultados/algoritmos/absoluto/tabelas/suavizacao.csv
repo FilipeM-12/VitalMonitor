@@ -1,0 +1,4 @@
+suavizacao,mae_holdout,n,n_sujeitos
+kalman,12.0697,50203,40
+ewma,12.0802,50203,40
+none,12.1694,50203,40

@@ -1,0 +1,39 @@
+{
+ "familia": "BITCN",
+ "variante": "baseline",
+ "ancoras": "causal",
+ "n_trials": 20,
+ "mae_cv": 10.022668537468439,
+ "mae_holdout": 11.826514645209624,
+ "mae_delta_holdout": 11.826514645209624,
+ "n_holdout": 48999,
+ "n_sujeitos_holdout": 40,
+ "coorte": {
+  "n_ids_pedidos": 50,
+  "n_sujeitos_dev": 244,
+  "n_sujeitos_teste": 40,
+  "n_janelas_dev": 321667,
+  "n_janelas_teste": 50203,
+  "ids_ausentes": [
+   "p006116",
+   "p008109",
+   "p014714",
+   "p031060",
+   "p031618",
+   "p063762",
+   "p065849",
+   "p066880",
+   "p069559",
+   "p070313"
+  ]
+ },
+ "n_features": 27,
+ "hiperparametros": {
+  "learning_rate": 0.00015353755534043114,
+  "nb_filters": 64,
+  "kernel_size": 3,
+  "dropout_rate": 0.35605612952853716
+ },
+ "tempo_busca_s": 6704.6,
+ "tempo_holdout_s": 132.5
+}

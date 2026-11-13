@@ -1,0 +1,32 @@
+{
+ "rotulo": "depois",
+ "associacao_s_apos_inicio": {
+  "ZZ_TESTE_ATRASO_0": 10,
+  "ZZ_TESTE_ATRASO_1": 30,
+  "ZZ_TESTE_ATRASO_2": 50
+ },
+ "atraso_s_ate_primeiro_valor": {
+  "ZZ_TESTE_ATRASO_0": {
+   "linha": 2.53,
+   "temp": 2.53,
+   "bpm": 10.84,
+   "spo2": 10.84,
+   "resp": 92.72
+  },
+  "ZZ_TESTE_ATRASO_1": {
+   "linha": 1.52,
+   "temp": 1.52,
+   "bpm": 9.84,
+   "spo2": 9.84,
+   "resp": 91.7
+  },
+  "ZZ_TESTE_ATRASO_2": {
+   "linha": 0.51,
+   "temp": 0.51,
+   "bpm": 8.84,
+   "spo2": 8.84,
+   "resp": 91.38
+  }
+ },
+ "nota": "atraso = segundos desde a associa\u00e7\u00e3o (linhas inseridas) at\u00e9 surgir em `medicao` a primeira linha / o primeiro valor n\u00e3o nulo de cada sinal"
+}

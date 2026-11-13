@@ -1,0 +1,14 @@
+{
+ "best_params": {
+  "learning_rate": 0.00010279038624705357,
+  "lstm_units_l1": 96,
+  "lstm_units_l2": 64,
+  "dropout_rate": 0.19199317512273997
+ },
+ "mae_cv": 10.128406948339363,
+ "mae_cv_pesquisa": 10.128406948339363,
+ "pesquisa_com": 27,
+ "n_trials": 20,
+ "falhas": 0,
+ "n_features": 27
+}

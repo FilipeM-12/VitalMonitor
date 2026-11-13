@@ -1,0 +1,41 @@
+{
+  "modo": "quant",
+  "direcao": "subida",
+  "conjunto": "base",
+  "janela": "tempo",
+  "best_cv": 0.7948949487534647,
+  "holdout": 0.7862905925660438,
+  "n_features": 19,
+  "feats": [
+    "hr_mean_z",
+    "hr_lag1",
+    "area_mean_global_z",
+    "w50_global_z",
+    "alpha_womersley_global_z",
+    "ppg_crest_time_global_z",
+    "ppg_decay_time_global_z",
+    "age",
+    "gender_bin",
+    "d_hr_mean_z_2m",
+    "d_hr_mean_z_5m",
+    "d_hr_mean_z_10m",
+    "d_area_mean_global_z_2m",
+    "d_area_mean_global_z_5m",
+    "d_area_mean_global_z_10m",
+    "d_alpha_womersley_global_z_2m",
+    "d_alpha_womersley_global_z_5m",
+    "d_alpha_womersley_global_z_10m",
+    "vol_hr_mean_z_5m"
+  ],
+  "best_params": {
+    "n_estimators": 200,
+    "learning_rate": 0.018511041904509248,
+    "max_depth": 6,
+    "min_child_weight": 4,
+    "subsample": 0.7963991843058504,
+    "colsample_bytree": 0.8274998316263057,
+    "gamma": 0.009847978281875258,
+    "reg_alpha": 0.8634172563686638,
+    "reg_lambda": 0.008818316874869815
+  }
+}

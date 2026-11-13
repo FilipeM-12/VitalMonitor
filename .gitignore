@@ -1,0 +1,9 @@
+# Ambientes e ficheiros gerados ao correr o código, e registos das corridas.
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+venv/
+.env
+.DS_Store
+*.log
+log_*.txt

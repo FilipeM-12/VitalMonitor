@@ -1,0 +1,5 @@
+ensaio,momento,tempo_s,termometro_C,sensor_C,erro_C
+1,inicio,0.0,42.8,42.93,0.13
+1,fim,939.2,38.6,38.67,0.07
+2,inicio,0.0,38.0,38.29,0.29
+2,fim,689.1,36.5,36.39,-0.11

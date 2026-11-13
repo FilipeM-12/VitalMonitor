@@ -1,0 +1,10 @@
+estudo,modelo,tentativas,mae_cv_melhor,mae_cv_mediana,mae_cv_pior,melhor_ate_5,melhor_ate_10,melhor_ate_15,melhor_ate_20,sujeitos_dev,janelas_dev,sujeitos_teste,mae_teste,janelas_teste
+XGB_baseline,XGBoost,20,9.5605,9.6344,9.9469,9.5865,9.5865,9.5605,9.5605,244,321667,40,12.0697,50203
+BILSTM_baseline,BiLSTM,20,10.1284,10.497,10.6917,10.2212,10.2212,10.1284,10.1284,244,321667,40,11.2673,48999
+BITCN_baseline,BiTCN,20,10.0227,10.1323,10.6944,10.0227,10.0227,10.0227,10.0227,244,321667,40,11.8265,48999
+HIBRIDO_BILSTM_XGB_baseline,Híbrido BiLSTM–XGBoost,20,10.2219,10.5667,10.852,10.3861,10.3861,10.3184,10.2219,244,321667,40,11.71,48999
+HIBRIDO_BITCN_XGB_baseline,Híbrido BiTCN–XGBoost,20,10.0177,10.2604,10.9755,10.0414,10.0414,10.0177,10.0177,244,321667,40,11.7448,48999
+XGB_clinicas,"XGBoost, covariáveis clínicas (temperatura, ventilação, RASS, vasoativos)",20,9.5521,9.6948,9.9233,9.7606,9.6111,9.5521,9.5521,244,321667,40,11.9195,50203
+XGB_fft,"XGBoost, espectral (24 magnitudes FFT do ECG)",20,9.4543,9.536,9.6751,9.5083,9.5069,9.4543,9.4543,242,320445,40,12.2187,49402
+XGB_nk,"XGBoost, NeuroKit, filtragem agressiva",20,6.9712,7.1029,7.3487,7.1164,6.9805,6.9805,6.9712,99,36440,20,6.706,6113
+XGB_nk2,"XGBoost, NeuroKit2 parcial (APG no lugar de crest/decay)",20,8.7332,8.8118,8.9432,8.7792,8.7332,8.7332,8.7332,174,179695,28,9.2419,17607

@@ -1,0 +1,23 @@
+{
+ "n_janelas": 50203,
+ "n_sujeitos": 40,
+ "n_sessoes": 301,
+ "acf_60min": 0.7104142018092956,
+ "n_efetivo": 130.67307389693144,
+ "pat_entre_sujeitos": 0.2945067324643722,
+ "pat_dentro_da_sessao": 0.03604250116164723,
+ "sd_variacao_real": 16.557609595903998,
+ "sd_variacao_prevista": 2.918861950610146,
+ "razao_desvios": 0.17628522605897234,
+ "r_variacao": 0.1481000562755592,
+ "r2_variacao": 0.0219336266688238,
+ "direcao_acerto": 0.5601819770419693,
+ "direcao_n_janelas": 33191,
+ "variancia_explicada_testes": {
+  "r2_nivel_global": 0.6320203102924546,
+  "r2_nivel_global_so_calibracao": 0.6273927996154753,
+  "r2_dentro_da_sessao": 0.018915834047975116,
+  "1_menos_SSE_SST_dentro_da_sessao": 0.01393289985448265,
+  "1_menos_MSE_modelo_MSE_ancora": 0.030071316792689262
+ }
+}

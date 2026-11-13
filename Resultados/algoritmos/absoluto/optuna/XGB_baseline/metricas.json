@@ -1,0 +1,42 @@
+{
+ "familia": "XGB",
+ "variante": "baseline",
+ "ancoras": "causal",
+ "n_trials": 20,
+ "mae_cv": 9.560547231268979,
+ "mae_holdout": 12.069689447499567,
+ "mae_delta_holdout": 12.069689447499567,
+ "n_holdout": 50203,
+ "n_sujeitos_holdout": 40,
+ "coorte": {
+  "n_ids_pedidos": 50,
+  "n_sujeitos_dev": 244,
+  "n_sujeitos_teste": 40,
+  "n_janelas_dev": 321667,
+  "n_janelas_teste": 50203,
+  "ids_ausentes": [
+   "p006116",
+   "p008109",
+   "p014714",
+   "p031060",
+   "p031618",
+   "p063762",
+   "p065849",
+   "p066880",
+   "p069559",
+   "p070313"
+  ]
+ },
+ "n_features": 27,
+ "hiperparametros": {
+  "n_estimators": 300,
+  "learning_rate": 0.005487829615827788,
+  "max_depth": 4,
+  "subsample": 0.8333468460101656,
+  "colsample_bytree": 0.6020844132938462,
+  "reg_alpha": 7.516757338648752,
+  "reg_lambda": 0.01185313239578427
+ },
+ "tempo_busca_s": 478.0,
+ "tempo_holdout_s": 4.1
+}

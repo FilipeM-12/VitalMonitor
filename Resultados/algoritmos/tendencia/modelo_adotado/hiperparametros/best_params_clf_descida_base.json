@@ -1,0 +1,37 @@
+{
+  "modo": "classificador",
+  "direcao": "descida",
+  "best_cv": 0.7726553649341876,
+  "best_params": {
+    "n_estimators": 300,
+    "learning_rate": 0.05285597197922164,
+    "max_depth": 3,
+    "min_child_weight": 12,
+    "subsample": 0.7628802215990248,
+    "colsample_bytree": 0.802214378488611,
+    "gamma": 0.0026411204750481907,
+    "reg_alpha": 0.02954574670461747,
+    "reg_lambda": 0.36245467081416705
+  },
+  "feats": [
+    "hr_mean_z",
+    "hr_lag1",
+    "area_mean_global_z",
+    "w50_global_z",
+    "alpha_womersley_global_z",
+    "ppg_crest_time_global_z",
+    "ppg_decay_time_global_z",
+    "age",
+    "gender_bin",
+    "d_hr_mean_z_2m",
+    "d_hr_mean_z_5m",
+    "d_hr_mean_z_10m",
+    "d_area_mean_global_z_2m",
+    "d_area_mean_global_z_5m",
+    "d_area_mean_global_z_10m",
+    "d_alpha_womersley_global_z_2m",
+    "d_alpha_womersley_global_z_5m",
+    "d_alpha_womersley_global_z_10m",
+    "vol_hr_mean_z_5m"
+  ]
+}

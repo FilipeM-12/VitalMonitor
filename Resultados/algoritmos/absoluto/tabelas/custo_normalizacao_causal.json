@@ -1,0 +1,97 @@
+{
+ "variantes": [
+  {
+   "variante": "baseline",
+   "mae_causal": 12.0697,
+   "mae_doente_inteiro": 12.0904,
+   "custo": -0.0208,
+   "n_causal": 50203,
+   "n_doente_inteiro": 50203,
+   "sujeitos_causal": 40,
+   "sujeitos_doente_inteiro": 40,
+   "ganho_vs_ancora_causal": 0.1244,
+   "ganho_vs_ancora_doente_inteiro": 0.1037
+  },
+  {
+   "variante": "nk",
+   "mae_causal": 6.706,
+   "mae_doente_inteiro": 6.7068,
+   "custo": -0.0008,
+   "n_causal": 6113,
+   "n_doente_inteiro": 6173,
+   "sujeitos_causal": 20,
+   "sujeitos_doente_inteiro": 21,
+   "ganho_vs_ancora_causal": 0.0787,
+   "ganho_vs_ancora_doente_inteiro": 0.0577
+  },
+  {
+   "variante": "nk2",
+   "mae_causal": 9.2419,
+   "mae_doente_inteiro": 9.1592,
+   "custo": 0.0827,
+   "n_causal": 17607,
+   "n_doente_inteiro": 17635,
+   "sujeitos_causal": 28,
+   "sujeitos_doente_inteiro": 29,
+   "ganho_vs_ancora_causal": 0.1173,
+   "ganho_vs_ancora_doente_inteiro": 0.1937
+  },
+  {
+   "variante": "fft",
+   "mae_causal": 12.2187,
+   "mae_doente_inteiro": 12.1562,
+   "custo": 0.0625,
+   "n_causal": 49402,
+   "n_doente_inteiro": 49402,
+   "sujeitos_causal": 40,
+   "sujeitos_doente_inteiro": 40,
+   "ganho_vs_ancora_causal": 0.0264,
+   "ganho_vs_ancora_doente_inteiro": 0.0889
+  },
+  {
+   "variante": "clinicas",
+   "mae_causal": 11.9195,
+   "mae_doente_inteiro": 11.9534,
+   "custo": -0.0339,
+   "n_causal": 50203,
+   "n_doente_inteiro": 50203,
+   "sujeitos_causal": 40,
+   "sujeitos_doente_inteiro": 40,
+   "ganho_vs_ancora_causal": 0.2746,
+   "ganho_vs_ancora_doente_inteiro": 0.2407
+  }
+ ],
+ "baseline_emparelhado": {
+  "n_linhas": 50203,
+  "n_sujeitos": 40,
+  "mae": {
+   "causal": {
+    "mae": 12.069689447499567,
+    "ic95": [
+     9.682243578467796,
+     14.225054631832734
+    ]
+   },
+   "doente_inteiro": {
+    "mae": 12.090444954946832,
+    "ic95": [
+     9.819753438707606,
+     14.08498463989958
+    ]
+   }
+  },
+  "diferenca": {
+   "causal": {
+    "contra": "doente_inteiro",
+    "diferenca_mae": -0.020755507447265842,
+    "ic95": [
+     -0.3857186560544378,
+     0.49856099334490145
+    ],
+    "p_melhor": 0.555
+   }
+  },
+  "n_doentes_que_pioram": 20,
+  "n_doentes": 40
+ }
+}

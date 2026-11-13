@@ -1,0 +1,19 @@
+{
+ "data": "2026-10-15",
+ "segundos_de_sinal": 720.0,
+ "velocidade": 6.0,
+ "csv": "Todos_participante C_bruto_20260408_193122.csv",
+ "simulador_codigo_saida": 0,
+ "duracao_real_s": 146,
+ "blocos_gravados": 37,
+ "blocos_com_previsao": 35,
+ "n_caracteristicas_no_primeiro_bloco": 28,
+ "pas_min": 131.8,
+ "pas_max": 134.7,
+ "calibracao": [
+  132,
+  78
+ ],
+ "erros_no_registo": 0,
+ "sucesso": true
+}

@@ -1,0 +1,8 @@
+{
+ "aceites": {
+  "R-peak extraction, real ECG": 236,
+  "R-peak extraction, ECG at zero": 0,
+  "PPG-only extraction, ECG at zero": 176
+ },
+ "previsoes": 28
+}

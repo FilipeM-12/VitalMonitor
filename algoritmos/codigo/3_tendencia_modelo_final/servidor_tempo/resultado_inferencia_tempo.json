@@ -1,0 +1,15 @@
+{
+ "xgboost_servidor": "3.4.0",
+ "blocos": 184994,
+ "xgboost_treino": "3.3.0",
+ "descida": {
+  "iguais_arredondado": 1.0,
+  "dif_max_mmHg": 0.0005016326904296875,
+  "n_diferentes": 0
+ },
+ "subida": {
+  "iguais_arredondado": 1.0,
+  "dif_max_mmHg": 0.0005016326904296875,
+  "n_diferentes": 0
+ }
+}

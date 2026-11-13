@@ -1,0 +1,105 @@
+{
+ "data": "2026-10-14",
+ "reserva": {
+  "pat_mean": 0.01930401512639275,
+  "hr_mean": 2.324734089466652,
+  "alpha_womersley": 4.2297829899304755,
+  "qtc_interval": 0.010530590360152343,
+  "sdi_interaction": 0.08874190103891168,
+  "area_mean": 0.6024471199170068,
+  "w50": 0.00834812021422255,
+  "qrs_duration": 0.0021920310216782916,
+  "r_amplitude": 0.01848794201635217,
+  "qrs_amplitude": 0.022406008412097143,
+  "qrs_area": 0.09328904762836533,
+  "ppg_crest_time": 0.012553616000633358,
+  "ppg_decay_time": 0.020003352265354227,
+  "alpha_womersley_b": 3.9137888934154588
+ },
+ "casos": {
+  "pat_mean": {
+   "sessoes": 8907,
+   "indefinido": 2042,
+   "nulo": 8,
+   "abaixo_de_1e6": 0
+  },
+  "hr_mean": {
+   "sessoes": 8907,
+   "indefinido": 2042,
+   "nulo": 17,
+   "abaixo_de_1e6": 0
+  },
+  "alpha_womersley": {
+   "sessoes": 8907,
+   "indefinido": 2042,
+   "nulo": 1,
+   "abaixo_de_1e6": 0
+  },
+  "qtc_interval": {
+   "sessoes": 8907,
+   "indefinido": 2042,
+   "nulo": 2,
+   "abaixo_de_1e6": 0
+  },
+  "sdi_interaction": {
+   "sessoes": 8907,
+   "indefinido": 2042,
+   "nulo": 1,
+   "abaixo_de_1e6": 0
+  },
+  "area_mean": {
+   "sessoes": 8907,
+   "indefinido": 2042,
+   "nulo": 1,
+   "abaixo_de_1e6": 0
+  },
+  "w50": {
+   "sessoes": 8907,
+   "indefinido": 2042,
+   "nulo": 11,
+   "abaixo_de_1e6": 2
+  },
+  "qrs_duration": {
+   "sessoes": 8907,
+   "indefinido": 2100,
+   "nulo": 82,
+   "abaixo_de_1e6": 40
+  },
+  "r_amplitude": {
+   "sessoes": 8907,
+   "indefinido": 2100,
+   "nulo": 2,
+   "abaixo_de_1e6": 0
+  },
+  "qrs_amplitude": {
+   "sessoes": 8907,
+   "indefinido": 2100,
+   "nulo": 2,
+   "abaixo_de_1e6": 0
+  },
+  "qrs_area": {
+   "sessoes": 8907,
+   "indefinido": 2100,
+   "nulo": 1,
+   "abaixo_de_1e6": 0
+  },
+  "ppg_crest_time": {
+   "sessoes": 8907,
+   "indefinido": 2042,
+   "nulo": 18,
+   "abaixo_de_1e6": 1
+  },
+  "ppg_decay_time": {
+   "sessoes": 8907,
+   "indefinido": 2042,
+   "nulo": 100,
+   "abaixo_de_1e6": 0
+  },
+  "alpha_womersley_b": {
+   "sessoes": 8907,
+   "indefinido": 2042,
+   "nulo": 1,
+   "abaixo_de_1e6": 0
+  }
+ }
+}

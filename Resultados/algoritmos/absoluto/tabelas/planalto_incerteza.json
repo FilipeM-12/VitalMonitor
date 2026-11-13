@@ -1,0 +1,13 @@
+{
+ "mae_holdout": 12.069689447499567,
+ "n_sujeitos_bootstrap": 40,
+ "n_bootstrap": 1000,
+ "ic95_baixo": 9.682243578467796,
+ "ic95_alto": 14.225054631832734,
+ "ic95_largura": 4.542811053364938,
+ "trial_melhor": 9.56054723126898,
+ "trial_mediana": 9.634372312405421,
+ "trial_diferenca": 0.07382508113644093,
+ "trial_pior": 9.94691987945832,
+ "n_trials": 20
+}

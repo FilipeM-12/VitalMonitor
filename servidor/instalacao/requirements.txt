@@ -1,0 +1,21 @@
+# Dependências do servidor (painel e workers).
+#
+# Criar o venv, a partir da pasta servidor/:
+#   python3 -m venv venv
+#   ./venv/bin/pip install -r instalacao/requirements.txt
+#
+# Não copiar a pasta venv/ entre máquinas: os executáveis têm o caminho absoluto escrito no cabeçalho
+# (#!/caminho/completo/venv/bin/python3) e o venv aponta para o Python do sistema (ver pyvenv.cfg).
+# Recriar sempre a partir deste ficheiro.
+
+Flask==3.1.3
+Flask-SQLAlchemy==3.1.1
+gunicorn==26.0.0
+SQLAlchemy==2.0.50
+psycopg2-binary==2.9.12
+paho-mqtt==2.1.0
+xgboost==3.4.0
+joblib==1.5.3
+numpy==2.4.6
+scipy==1.17.1
+pyscard==2.3.1

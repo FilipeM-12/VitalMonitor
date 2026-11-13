@@ -1,0 +1,6 @@
+variante,descricao,sujeitos,janelas,mae,mae_cv,janelas_comuns_com_baseline,mae_nas_comuns,mae_baseline_nas_comuns,ganho_nas_comuns
+nk,"NeuroKit, filtragem agressiva",20,6113,6.706,6.9712,3585,6.9581,12.7573,5.7992
+nk2,NeuroKit2 parcial (APG no lugar de crest/decay),28,17607,9.2419,8.7332,15134,9.4246,12.3573,2.9326
+fft,espectral (24 magnitudes FFT do ECG),40,49402,12.2187,9.4543,48910,12.2286,12.224,-0.0046
+clinicas,"covariáveis clínicas (temperatura, ventilação, RASS, vasoativos)",40,50203,11.9195,9.5521,50203,11.9195,12.0697,0.1502
+baseline,extração própria (referência),40,50203,12.0697,9.5605,50203,12.0697,12.0697,0.0

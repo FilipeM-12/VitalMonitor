@@ -1,0 +1,51 @@
+{
+ "nota": "vies e limites de concordancia em mmHg (diferenca estimativa menos referencia); regressao: extremos da reta da diferenca sobre a media; forma_da_celula: o hexagono de cada celula; xlim e ylim: os limites do grafico.",
+ "vies": 2.480859328568127,
+ "limite_superior": 34.588927253806496,
+ "limite_inferior": -29.62720859667024,
+ "declive": 0.11717937002671856,
+ "regressao": {
+  "x": [
+   68.89662001093228,
+   189.64375009626423
+  ],
+  "y": [
+   -4.292800321368558,
+   9.856272314564876
+  ]
+ },
+ "forma_da_celula": [
+  [
+   1.0977011847893292,
+   -0.8227451671474406
+  ],
+  [
+   1.0977011847893292,
+   0.8227451671474406
+  ],
+  [
+   0.0,
+   1.6454903342948812
+  ],
+  [
+   -1.0977011847893292,
+   0.8227451671474406
+  ],
+  [
+   -1.0977011847893292,
+   -0.8227451671474406
+  ],
+  [
+   0.0,
+   -1.6454903342948812
+  ]
+ ],
+ "xlim": [
+  62.85926337384384,
+  195.68110673335266
+ ],
+ "ylim": [
+  -87.12566661768638,
+  81.20799458067995
+ ]
+}

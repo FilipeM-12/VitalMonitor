@@ -1,0 +1,60 @@
+{
+ "nota": "ponto: valores no teste (sensibilidades em fração, o resto em % ou min/h); ic95: intervalos de confiança a 95 % por bootstrap sobre os doentes; alarme_aleatorio: sensibilidade do alarme aleatório com a mesma estrutura e o seu intervalo.",
+ "doentes": 48,
+ "ponto": {
+  "sens_d": 0.6681547619047619,
+  "sens_s": 0.6572123176661264,
+  "fa_min_h": 9.455982356184526,
+  "duty": 27.114392899229163,
+  "vpp_d": 17.491133096882585,
+  "vpp_s": 16.69944925255704,
+  "vpp_u": 25.278964044634243,
+  "alarmes_h_u": 9.417386509832752
+ },
+ "ic95": {
+  "sens_d": [
+   0.6149443101625728,
+   0.7352607663122885
+  ],
+  "sens_s": [
+   0.5883164485352329,
+   0.7320952548558302
+  ],
+  "fa_min_h": [
+   7.500637485255122,
+   11.55809483281665
+  ],
+  "duty": [
+   22.441118294386495,
+   32.54677973304198
+  ],
+  "vpp_d": [
+   13.279117773353004,
+   23.27444508706779
+  ],
+  "vpp_s": [
+   12.610403489113411,
+   21.823307466564053
+  ],
+  "vpp_u": [
+   19.258989689853088,
+   32.79868930407177
+  ],
+  "alarmes_h_u": [
+   8.259713600468496,
+   10.706691542495138
+  ]
+ },
+ "alarme_aleatorio": {
+  "descida": {
+   "aleat_sens": 0.3585647321428571,
+   "aleat_lo": 0.33630952380952384,
+   "aleat_hi": 0.38169642857142855
+  },
+  "subida": {
+   "aleat_sens": 0.3449448946515397,
+   "aleat_lo": 0.3217179902755267,
+   "aleat_hi": 0.3695299837925446
+  }
+ }
+}

@@ -1,0 +1,181 @@
+estudo,modelo,tentativa,mae_cv,melhor_ate_agora
+XGB_baseline,XGBoost,1,9.7249,9.7249
+XGB_baseline,XGBoost,2,9.6515,9.6515
+XGB_baseline,XGBoost,3,9.7967,9.6515
+XGB_baseline,XGBoost,4,9.6921,9.6515
+XGB_baseline,XGBoost,5,9.5865,9.5865
+XGB_baseline,XGBoost,6,9.6553,9.5865
+XGB_baseline,XGBoost,7,9.9469,9.5865
+XGB_baseline,XGBoost,8,9.6889,9.5865
+XGB_baseline,XGBoost,9,9.9136,9.5865
+XGB_baseline,XGBoost,10,9.6035,9.5865
+XGB_baseline,XGBoost,11,9.645,9.5865
+XGB_baseline,XGBoost,12,9.566,9.566
+XGB_baseline,XGBoost,13,9.6485,9.566
+XGB_baseline,XGBoost,14,9.5605,9.5605
+XGB_baseline,XGBoost,15,9.6238,9.5605
+XGB_baseline,XGBoost,16,9.5841,9.5605
+XGB_baseline,XGBoost,17,9.5753,9.5605
+XGB_baseline,XGBoost,18,9.5997,9.5605
+XGB_baseline,XGBoost,19,9.5609,9.5605
+XGB_baseline,XGBoost,20,9.6125,9.5605
+BILSTM_baseline,BiLSTM,1,10.6351,10.6351
+BILSTM_baseline,BiLSTM,2,10.4804,10.4804
+BILSTM_baseline,BiLSTM,3,10.6449,10.4804
+BILSTM_baseline,BiLSTM,4,10.5007,10.4804
+BILSTM_baseline,BiLSTM,5,10.2212,10.2212
+BILSTM_baseline,BiLSTM,6,10.6217,10.2212
+BILSTM_baseline,BiLSTM,7,10.6917,10.2212
+BILSTM_baseline,BiLSTM,8,10.5523,10.2212
+BILSTM_baseline,BiLSTM,9,10.5937,10.2212
+BILSTM_baseline,BiLSTM,10,10.3956,10.2212
+BILSTM_baseline,BiLSTM,11,10.3437,10.2212
+BILSTM_baseline,BiLSTM,12,10.1843,10.1843
+BILSTM_baseline,BiLSTM,13,10.154,10.154
+BILSTM_baseline,BiLSTM,14,10.4934,10.154
+BILSTM_baseline,BiLSTM,15,10.1284,10.1284
+BILSTM_baseline,BiLSTM,16,10.4543,10.1284
+BILSTM_baseline,BiLSTM,17,10.5419,10.1284
+BILSTM_baseline,BiLSTM,18,10.5646,10.1284
+BILSTM_baseline,BiLSTM,19,10.5178,10.1284
+BILSTM_baseline,BiLSTM,20,10.2708,10.1284
+BITCN_baseline,BiTCN,1,10.1104,10.1104
+BITCN_baseline,BiTCN,2,10.5425,10.1104
+BITCN_baseline,BiTCN,3,10.0792,10.0792
+BITCN_baseline,BiTCN,4,10.0227,10.0227
+BITCN_baseline,BiTCN,5,10.335,10.0227
+BITCN_baseline,BiTCN,6,10.6944,10.0227
+BITCN_baseline,BiTCN,7,10.5494,10.0227
+BITCN_baseline,BiTCN,8,10.5146,10.0227
+BITCN_baseline,BiTCN,9,10.6021,10.0227
+BITCN_baseline,BiTCN,10,10.4936,10.0227
+BITCN_baseline,BiTCN,11,10.0401,10.0227
+BITCN_baseline,BiTCN,12,10.039,10.0227
+BITCN_baseline,BiTCN,13,10.0504,10.0227
+BITCN_baseline,BiTCN,14,10.1478,10.0227
+BITCN_baseline,BiTCN,15,10.0896,10.0227
+BITCN_baseline,BiTCN,16,10.1049,10.0227
+BITCN_baseline,BiTCN,17,10.3971,10.0227
+BITCN_baseline,BiTCN,18,10.1628,10.0227
+BITCN_baseline,BiTCN,19,10.1168,10.0227
+BITCN_baseline,BiTCN,20,10.0986,10.0227
+HIBRIDO_BILSTM_XGB_baseline,Híbrido BiLSTM–XGBoost,1,10.569,10.569
+HIBRIDO_BILSTM_XGB_baseline,Híbrido BiLSTM–XGBoost,2,10.3861,10.3861
+HIBRIDO_BILSTM_XGB_baseline,Híbrido BiLSTM–XGBoost,3,10.7537,10.3861
+HIBRIDO_BILSTM_XGB_baseline,Híbrido BiLSTM–XGBoost,4,10.7904,10.3861
+HIBRIDO_BILSTM_XGB_baseline,Híbrido BiLSTM–XGBoost,5,10.6424,10.3861
+HIBRIDO_BILSTM_XGB_baseline,Híbrido BiLSTM–XGBoost,6,10.5643,10.3861
+HIBRIDO_BILSTM_XGB_baseline,Híbrido BiLSTM–XGBoost,7,10.6086,10.3861
+HIBRIDO_BILSTM_XGB_baseline,Híbrido BiLSTM–XGBoost,8,10.8373,10.3861
+HIBRIDO_BILSTM_XGB_baseline,Híbrido BiLSTM–XGBoost,9,10.852,10.3861
+HIBRIDO_BILSTM_XGB_baseline,Híbrido BiLSTM–XGBoost,10,10.5289,10.3861
+HIBRIDO_BILSTM_XGB_baseline,Híbrido BiLSTM–XGBoost,11,10.5817,10.3861
+HIBRIDO_BILSTM_XGB_baseline,Híbrido BiLSTM–XGBoost,12,10.5165,10.3861
+HIBRIDO_BILSTM_XGB_baseline,Híbrido BiLSTM–XGBoost,13,10.384,10.384
+HIBRIDO_BILSTM_XGB_baseline,Híbrido BiLSTM–XGBoost,14,10.4589,10.384
+HIBRIDO_BILSTM_XGB_baseline,Híbrido BiLSTM–XGBoost,15,10.3184,10.3184
+HIBRIDO_BILSTM_XGB_baseline,Híbrido BiLSTM–XGBoost,16,10.7269,10.3184
+HIBRIDO_BILSTM_XGB_baseline,Híbrido BiLSTM–XGBoost,17,10.5867,10.3184
+HIBRIDO_BILSTM_XGB_baseline,Híbrido BiLSTM–XGBoost,18,10.3897,10.3184
+HIBRIDO_BILSTM_XGB_baseline,Híbrido BiLSTM–XGBoost,19,10.492,10.3184
+HIBRIDO_BILSTM_XGB_baseline,Híbrido BiLSTM–XGBoost,20,10.2219,10.2219
+HIBRIDO_BITCN_XGB_baseline,Híbrido BiTCN–XGBoost,1,10.8429,10.8429
+HIBRIDO_BITCN_XGB_baseline,Híbrido BiTCN–XGBoost,2,10.5154,10.5154
+HIBRIDO_BITCN_XGB_baseline,Híbrido BiTCN–XGBoost,3,10.0414,10.0414
+HIBRIDO_BITCN_XGB_baseline,Híbrido BiTCN–XGBoost,4,10.424,10.0414
+HIBRIDO_BITCN_XGB_baseline,Híbrido BiTCN–XGBoost,5,10.2956,10.0414
+HIBRIDO_BITCN_XGB_baseline,Híbrido BiTCN–XGBoost,6,10.5741,10.0414
+HIBRIDO_BITCN_XGB_baseline,Híbrido BiTCN–XGBoost,7,10.1704,10.0414
+HIBRIDO_BITCN_XGB_baseline,Híbrido BiTCN–XGBoost,8,10.6557,10.0414
+HIBRIDO_BITCN_XGB_baseline,Híbrido BiTCN–XGBoost,9,10.6824,10.0414
+HIBRIDO_BITCN_XGB_baseline,Híbrido BiTCN–XGBoost,10,10.9755,10.0414
+HIBRIDO_BITCN_XGB_baseline,Híbrido BiTCN–XGBoost,11,10.1868,10.0414
+HIBRIDO_BITCN_XGB_baseline,Híbrido BiTCN–XGBoost,12,10.0177,10.0177
+HIBRIDO_BITCN_XGB_baseline,Híbrido BiTCN–XGBoost,13,10.2682,10.0177
+HIBRIDO_BITCN_XGB_baseline,Híbrido BiTCN–XGBoost,14,10.1897,10.0177
+HIBRIDO_BITCN_XGB_baseline,Híbrido BiTCN–XGBoost,15,10.2006,10.0177
+HIBRIDO_BITCN_XGB_baseline,Híbrido BiTCN–XGBoost,16,10.2526,10.0177
+HIBRIDO_BITCN_XGB_baseline,Híbrido BiTCN–XGBoost,17,10.1516,10.0177
+HIBRIDO_BITCN_XGB_baseline,Híbrido BiTCN–XGBoost,18,10.1713,10.0177
+HIBRIDO_BITCN_XGB_baseline,Híbrido BiTCN–XGBoost,19,10.0625,10.0177
+HIBRIDO_BITCN_XGB_baseline,Híbrido BiTCN–XGBoost,20,10.6895,10.0177
+XGB_clinicas,"XGBoost, covariáveis clínicas (temperatura, ventilação, RASS, vasoativos)",1,9.8648,9.8648
+XGB_clinicas,"XGBoost, covariáveis clínicas (temperatura, ventilação, RASS, vasoativos)",2,9.9233,9.8648
+XGB_clinicas,"XGBoost, covariáveis clínicas (temperatura, ventilação, RASS, vasoativos)",3,9.7606,9.7606
+XGB_clinicas,"XGBoost, covariáveis clínicas (temperatura, ventilação, RASS, vasoativos)",4,9.9161,9.7606
+XGB_clinicas,"XGBoost, covariáveis clínicas (temperatura, ventilação, RASS, vasoativos)",5,9.7933,9.7606
+XGB_clinicas,"XGBoost, covariáveis clínicas (temperatura, ventilação, RASS, vasoativos)",6,9.7673,9.7606
+XGB_clinicas,"XGBoost, covariáveis clínicas (temperatura, ventilação, RASS, vasoativos)",7,9.706,9.706
+XGB_clinicas,"XGBoost, covariáveis clínicas (temperatura, ventilação, RASS, vasoativos)",8,9.6336,9.6336
+XGB_clinicas,"XGBoost, covariáveis clínicas (temperatura, ventilação, RASS, vasoativos)",9,9.8664,9.6336
+XGB_clinicas,"XGBoost, covariáveis clínicas (temperatura, ventilação, RASS, vasoativos)",10,9.6111,9.6111
+XGB_clinicas,"XGBoost, covariáveis clínicas (temperatura, ventilação, RASS, vasoativos)",11,9.7342,9.6111
+XGB_clinicas,"XGBoost, covariáveis clínicas (temperatura, ventilação, RASS, vasoativos)",12,9.5521,9.5521
+XGB_clinicas,"XGBoost, covariáveis clínicas (temperatura, ventilação, RASS, vasoativos)",13,9.6876,9.5521
+XGB_clinicas,"XGBoost, covariáveis clínicas (temperatura, ventilação, RASS, vasoativos)",14,9.5861,9.5521
+XGB_clinicas,"XGBoost, covariáveis clínicas (temperatura, ventilação, RASS, vasoativos)",15,9.5677,9.5521
+XGB_clinicas,"XGBoost, covariáveis clínicas (temperatura, ventilação, RASS, vasoativos)",16,9.588,9.5521
+XGB_clinicas,"XGBoost, covariáveis clínicas (temperatura, ventilação, RASS, vasoativos)",17,9.5709,9.5521
+XGB_clinicas,"XGBoost, covariáveis clínicas (temperatura, ventilação, RASS, vasoativos)",18,9.5786,9.5521
+XGB_clinicas,"XGBoost, covariáveis clínicas (temperatura, ventilação, RASS, vasoativos)",19,9.6515,9.5521
+XGB_clinicas,"XGBoost, covariáveis clínicas (temperatura, ventilação, RASS, vasoativos)",20,9.702,9.5521
+XGB_fft,"XGBoost, espectral (24 magnitudes FFT do ECG)",1,9.6707,9.6707
+XGB_fft,"XGBoost, espectral (24 magnitudes FFT do ECG)",2,9.5083,9.5083
+XGB_fft,"XGBoost, espectral (24 magnitudes FFT do ECG)",3,9.6605,9.5083
+XGB_fft,"XGBoost, espectral (24 magnitudes FFT do ECG)",4,9.5815,9.5083
+XGB_fft,"XGBoost, espectral (24 magnitudes FFT do ECG)",5,9.6128,9.5083
+XGB_fft,"XGBoost, espectral (24 magnitudes FFT do ECG)",6,9.657,9.5083
+XGB_fft,"XGBoost, espectral (24 magnitudes FFT do ECG)",7,9.5228,9.5083
+XGB_fft,"XGBoost, espectral (24 magnitudes FFT do ECG)",8,9.5745,9.5083
+XGB_fft,"XGBoost, espectral (24 magnitudes FFT do ECG)",9,9.5069,9.5069
+XGB_fft,"XGBoost, espectral (24 magnitudes FFT do ECG)",10,9.6751,9.5069
+XGB_fft,"XGBoost, espectral (24 magnitudes FFT do ECG)",11,9.571,9.5069
+XGB_fft,"XGBoost, espectral (24 magnitudes FFT do ECG)",12,9.5886,9.5069
+XGB_fft,"XGBoost, espectral (24 magnitudes FFT do ECG)",13,9.4543,9.4543
+XGB_fft,"XGBoost, espectral (24 magnitudes FFT do ECG)",14,9.4638,9.4543
+XGB_fft,"XGBoost, espectral (24 magnitudes FFT do ECG)",15,9.4614,9.4543
+XGB_fft,"XGBoost, espectral (24 magnitudes FFT do ECG)",16,9.4898,9.4543
+XGB_fft,"XGBoost, espectral (24 magnitudes FFT do ECG)",17,9.4592,9.4543
+XGB_fft,"XGBoost, espectral (24 magnitudes FFT do ECG)",18,9.5056,9.4543
+XGB_fft,"XGBoost, espectral (24 magnitudes FFT do ECG)",19,9.5066,9.4543
+XGB_fft,"XGBoost, espectral (24 magnitudes FFT do ECG)",20,9.5492,9.4543
+XGB_nk,"XGBoost, NeuroKit, filtragem agressiva",1,7.3487,7.3487
+XGB_nk,"XGBoost, NeuroKit, filtragem agressiva",2,7.1164,7.1164
+XGB_nk,"XGBoost, NeuroKit, filtragem agressiva",3,7.2626,7.1164
+XGB_nk,"XGBoost, NeuroKit, filtragem agressiva",4,7.1821,7.1164
+XGB_nk,"XGBoost, NeuroKit, filtragem agressiva",5,7.3307,7.1164
+XGB_nk,"XGBoost, NeuroKit, filtragem agressiva",6,7.2011,7.1164
+XGB_nk,"XGBoost, NeuroKit, filtragem agressiva",7,7.266,7.1164
+XGB_nk,"XGBoost, NeuroKit, filtragem agressiva",8,6.9805,6.9805
+XGB_nk,"XGBoost, NeuroKit, filtragem agressiva",9,7.2675,6.9805
+XGB_nk,"XGBoost, NeuroKit, filtragem agressiva",10,7.1792,6.9805
+XGB_nk,"XGBoost, NeuroKit, filtragem agressiva",11,7.2808,6.9805
+XGB_nk,"XGBoost, NeuroKit, filtragem agressiva",12,7.0239,6.9805
+XGB_nk,"XGBoost, NeuroKit, filtragem agressiva",13,7.0476,6.9805
+XGB_nk,"XGBoost, NeuroKit, filtragem agressiva",14,7.0177,6.9805
+XGB_nk,"XGBoost, NeuroKit, filtragem agressiva",15,7.0282,6.9805
+XGB_nk,"XGBoost, NeuroKit, filtragem agressiva",16,7.0874,6.9805
+XGB_nk,"XGBoost, NeuroKit, filtragem agressiva",17,7.0359,6.9805
+XGB_nk,"XGBoost, NeuroKit, filtragem agressiva",18,7.0175,6.9805
+XGB_nk,"XGBoost, NeuroKit, filtragem agressiva",19,7.0895,6.9805
+XGB_nk,"XGBoost, NeuroKit, filtragem agressiva",20,6.9712,6.9712
+XGB_nk2,"XGBoost, NeuroKit2 parcial (APG no lugar de crest/decay)",1,8.8109,8.8109
+XGB_nk2,"XGBoost, NeuroKit2 parcial (APG no lugar de crest/decay)",2,8.8353,8.8109
+XGB_nk2,"XGBoost, NeuroKit2 parcial (APG no lugar de crest/decay)",3,8.9073,8.8109
+XGB_nk2,"XGBoost, NeuroKit2 parcial (APG no lugar de crest/decay)",4,8.7792,8.7792
+XGB_nk2,"XGBoost, NeuroKit2 parcial (APG no lugar de crest/decay)",5,8.9432,8.7792
+XGB_nk2,"XGBoost, NeuroKit2 parcial (APG no lugar de crest/decay)",6,8.8302,8.7792
+XGB_nk2,"XGBoost, NeuroKit2 parcial (APG no lugar de crest/decay)",7,8.7908,8.7792
+XGB_nk2,"XGBoost, NeuroKit2 parcial (APG no lugar de crest/decay)",8,8.8686,8.7792
+XGB_nk2,"XGBoost, NeuroKit2 parcial (APG no lugar de crest/decay)",9,8.7332,8.7332
+XGB_nk2,"XGBoost, NeuroKit2 parcial (APG no lugar de crest/decay)",10,8.8058,8.7332
+XGB_nk2,"XGBoost, NeuroKit2 parcial (APG no lugar de crest/decay)",11,8.8463,8.7332
+XGB_nk2,"XGBoost, NeuroKit2 parcial (APG no lugar de crest/decay)",12,8.7655,8.7332
+XGB_nk2,"XGBoost, NeuroKit2 parcial (APG no lugar de crest/decay)",13,8.7828,8.7332
+XGB_nk2,"XGBoost, NeuroKit2 parcial (APG no lugar de crest/decay)",14,8.8326,8.7332
+XGB_nk2,"XGBoost, NeuroKit2 parcial (APG no lugar de crest/decay)",15,8.8148,8.7332
+XGB_nk2,"XGBoost, NeuroKit2 parcial (APG no lugar de crest/decay)",16,8.852,8.7332
+XGB_nk2,"XGBoost, NeuroKit2 parcial (APG no lugar de crest/decay)",17,8.8126,8.7332
+XGB_nk2,"XGBoost, NeuroKit2 parcial (APG no lugar de crest/decay)",18,8.8054,8.7332
+XGB_nk2,"XGBoost, NeuroKit2 parcial (APG no lugar de crest/decay)",19,8.7585,8.7332
+XGB_nk2,"XGBoost, NeuroKit2 parcial (APG no lugar de crest/decay)",20,8.755,8.7332

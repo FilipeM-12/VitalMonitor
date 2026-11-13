@@ -1,0 +1,22 @@
+{
+ "n_janelas": 50203,
+ "n_sujeitos": 40,
+ "mse_modelo": 274.5083413463527,
+ "rmse_modelo": 16.568293253873577,
+ "mse_ancora": 283.01909831001456,
+ "rmse_ancora": 16.8231714700295,
+ "mae_modelo": 12.069689447499567,
+ "vies": 2.480859328568127,
+ "sd_diferencas": 16.381667308795084,
+ "limite_inferior": -29.62720859667024,
+ "limite_superior": 34.588927253806496,
+ "declive": 0.11717937002671858,
+ "declive_ic95": [
+  0.055365082286424845,
+  0.25624955578292946
+ ],
+ "corr_dif_media": 0.1713340235332295,
+ "fora_dos_limites_pct": 5.041531382586698,
+ "aami_vies_ok": true,
+ "aami_sd_ok": false
+}

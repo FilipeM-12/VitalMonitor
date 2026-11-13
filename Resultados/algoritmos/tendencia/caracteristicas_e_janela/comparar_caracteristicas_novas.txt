@@ -1,0 +1,21 @@
+descida 1102650 dev, 184994 teste; prevalência 0.0262/0.0302
+  base   19 caract.  AUC dev 0.7743  AUC teste 0.7536  (92 s)
+  morf   25 caract.  AUC dev 0.7849  AUC teste 0.7646  (174 s)
+  apg    25 caract.  AUC dev 0.7934  AUC teste 0.7740  (257 s)
+  novas  31 caract.  AUC dev 0.7947  AUC teste 0.7729  (345 s)
+  tudo   43 caract.  AUC dev 0.8090  AUC teste 0.7918  (444 s)
+  morf   - base: dev +0.0106  teste +0.0110  IC95 [+0.0032, +0.0218]
+  apg    - base: dev +0.0191  teste +0.0204  IC95 [+0.0038, +0.0387]
+  novas  - base: dev +0.0204  teste +0.0193  IC95 [+0.0063, +0.0358]
+  tudo   - base: dev +0.0347  teste +0.0382  IC95 [+0.0203, +0.0614]
+subida 1102650 dev, 184994 teste; prevalência 0.0244/0.0288
+  base   19 caract.  AUC dev 0.7930  AUC teste 0.7879  (107 s)
+  morf   25 caract.  AUC dev 0.8087  AUC teste 0.7937  (210 s)
+  apg    25 caract.  AUC dev 0.8143  AUC teste 0.8126  (311 s)
+  novas  31 caract.  AUC dev 0.8181  AUC teste 0.8093  (423 s)
+  tudo   43 caract.  AUC dev 0.8311  AUC teste 0.8258  (548 s)
+  morf   - base: dev +0.0158  teste +0.0059  IC95 [-0.0003, +0.0111]
+  apg    - base: dev +0.0213  teste +0.0247  IC95 [+0.0070, +0.0430]
+  novas  - base: dev +0.0251  teste +0.0214  IC95 [+0.0115, +0.0317]
+  tudo   - base: dev +0.0381  teste +0.0379  IC95 [+0.0210, +0.0538]
+FIM

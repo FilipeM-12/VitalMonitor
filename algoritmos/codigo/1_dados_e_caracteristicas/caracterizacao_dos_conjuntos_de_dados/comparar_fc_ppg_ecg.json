@@ -1,0 +1,35 @@
+{
+ "todas": {
+  "janelas": 4240345,
+  "sujeitos": 356,
+  "vies_bpm": 0.31,
+  "erro_abs_mediano_bpm": 0.18,
+  "erro_abs_medio_bpm": 0.9,
+  "p95_erro_abs_bpm": 4.4,
+  "dentro_5bpm_pct": 95.8,
+  "dentro_10bpm_pct": 98.6,
+  "r": 0.9905
+ },
+ "teste": {
+  "janelas": 635516,
+  "sujeitos": 50,
+  "vies_bpm": 0.29,
+  "erro_abs_mediano_bpm": 0.15,
+  "erro_abs_medio_bpm": 0.76,
+  "p95_erro_abs_bpm": 3.6,
+  "dentro_5bpm_pct": 96.6,
+  "dentro_10bpm_pct": 98.6,
+  "r": 0.9898
+ },
+ "desenvolvimento": {
+  "janelas": 3604829,
+  "sujeitos": 306,
+  "vies_bpm": 0.31,
+  "erro_abs_mediano_bpm": 0.19,
+  "erro_abs_medio_bpm": 0.92,
+  "p95_erro_abs_bpm": 4.5,
+  "dentro_5bpm_pct": 95.7,
+  "dentro_10bpm_pct": 98.6,
+  "r": 0.9906
+ }
+}

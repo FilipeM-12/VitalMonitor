@@ -1,0 +1,26 @@
+{
+ "8": {
+  "linhas": 1454647,
+  "minutos_nominais": 2.0,
+  "exatas_pct": 74.9,
+  "acima_pct": 25.1,
+  "p95": 2.75,
+  "max": 16.25
+ },
+ "20": {
+  "linhas": 1337661,
+  "minutos_nominais": 5.0,
+  "exatas_pct": 61.1,
+  "acima_pct": 38.9,
+  "p95": 6.5,
+  "max": 21.25
+ },
+ "40": {
+  "linhas": 1180930,
+  "minutos_nominais": 10.0,
+  "exatas_pct": 49.4,
+  "acima_pct": 50.6,
+  "p95": 12.25,
+  "max": 27.75
+ }
+}

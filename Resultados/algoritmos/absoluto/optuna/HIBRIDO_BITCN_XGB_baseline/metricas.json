@@ -1,0 +1,46 @@
+{
+ "familia": "HIBRIDO_BITCN_XGB",
+ "variante": "baseline",
+ "ancoras": "causal",
+ "n_trials": 20,
+ "mae_cv": 10.017747780404376,
+ "mae_holdout": 11.744802800034423,
+ "mae_delta_holdout": 11.744802800034423,
+ "n_holdout": 48999,
+ "n_sujeitos_holdout": 40,
+ "coorte": {
+  "n_ids_pedidos": 50,
+  "n_sujeitos_dev": 244,
+  "n_sujeitos_teste": 40,
+  "n_janelas_dev": 321667,
+  "n_janelas_teste": 50203,
+  "ids_ausentes": [
+   "p006116",
+   "p008109",
+   "p014714",
+   "p031060",
+   "p031618",
+   "p063762",
+   "p065849",
+   "p066880",
+   "p069559",
+   "p070313"
+  ]
+ },
+ "n_features": 27,
+ "hiperparametros": {
+  "rede_learning_rate": 0.0001039249100051676,
+  "rede_nb_filters": 48,
+  "rede_kernel_size": 4,
+  "rede_dropout_rate": 0.26659644172358454,
+  "xgb_n_estimators": 600,
+  "xgb_learning_rate": 0.05015127117809544,
+  "xgb_max_depth": 6,
+  "xgb_subsample": 0.628141780509092,
+  "xgb_colsample_bytree": 0.6694834688131027,
+  "xgb_reg_alpha": 8.962464286252914,
+  "xgb_reg_lambda": 0.010824922552150949
+ },
+ "tempo_busca_s": 8571.1,
+ "tempo_holdout_s": 179.4
+}

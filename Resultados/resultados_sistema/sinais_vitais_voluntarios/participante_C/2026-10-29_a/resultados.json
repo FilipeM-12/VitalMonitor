@@ -1,0 +1,38 @@
+{
+ "gravacao": "participante_C_PULSEIRA_01_20261029_190312.csv",
+ "registo": "registo_referencia.csv",
+ "pulseira": "PULSEIRA_01",
+ "inicio_utc": "2026-10-29 19:03:12.659000",
+ "fim_utc": "2026-10-29 19:13:38.945000",
+ "duracao_min": 10.4,
+ "amostras": 54425,
+ "fs_media_hz": 86.9,
+ "buracos_gravacao": 89,
+ "fc": {
+  "n": 3,
+  "vies": 1.33,
+  "mae": 2.67,
+  "dp_erro": 3.51,
+  "erro_max": 5.0
+ },
+ "spo2": {
+  "n": 3,
+  "vies": 0.33,
+  "mae": 1.0,
+  "dp_erro": 1.15,
+  "erro_max": 1.0
+ },
+ "fr": {
+  "n": 0
+ },
+ "cobertura": {
+  "fc": 0.714,
+  "spo2": 0.692,
+  "fr": 0.033
+ },
+ "portoes": {
+  "janelas": 104,
+  "aceites": 88,
+  "fracao_aceites": 0.846
+ }
+}

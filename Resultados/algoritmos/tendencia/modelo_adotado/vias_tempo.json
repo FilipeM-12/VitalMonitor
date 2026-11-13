@@ -1,0 +1,436 @@
+{
+ "portao": {
+  "descida": {
+   "tipo": "dif",
+   "n": 4,
+   "percentil": 75,
+   "limite": 2.9302518672963536,
+   "ganho_dev": 0.040809814001877505,
+   "ganho_teste_medio": 0.0399926244170401,
+   "ganho_teste_10": 0.02002059442014803
+  },
+  "subida": {
+   "tipo": "rel",
+   "n": 4,
+   "percentil": 75,
+   "limite": 0.5283185863853074,
+   "ganho_dev": 0.03361685929890509,
+   "ganho_teste_medio": 0.037822275680374315,
+   "ganho_teste_10": 0.02730740153213085
+  }
+ },
+ "ponto_conjunto": {
+  "sem_portao": {
+   "tau_d": 11.34,
+   "tau_s": 10.92,
+   "sens_d": 0.6681547619047619,
+   "sens_s": 0.6572123176661264,
+   "fa_min_h": 9.455982356184526,
+   "duty": 0.2711439289922916,
+   "alarmes_h": 9.417386509832752,
+   "falsos_h": 7.036768760067894,
+   "verd_h": 2.3806177497648573,
+   "verd_min_h": 8.079505281252365,
+   "vpp": 0.25278964044634245
+  },
+  "com_portao": {
+   "tau_d": 10.29,
+   "tau_s": 10.45,
+   "sens_d": 0.7358630952380952,
+   "sens_s": 0.6434359805510534,
+   "fa_min_h": 9.55036379558256,
+   "duty": 0.25509475983004853,
+   "alarmes_h": 11.087062283101075,
+   "falsos_h": 8.449571337448782,
+   "verd_h": 2.6374909456522917,
+   "verd_min_h": 7.196990172654249,
+   "vpp": 0.23788907091036737
+  }
+ },
+ "vias": [
+  {
+   "via": "quantilica_contra_classificador",
+   "direcao": "descida",
+   "parametro": "",
+   "ganho_medio_4a10": 0.006258968205965039,
+   "ganho_10": 0.017004049540537025,
+   "escolhido_no_dev": true
+  },
+  {
+   "via": "quantilica_contra_classificador",
+   "direcao": "subida",
+   "parametro": "",
+   "ganho_medio_4a10": -0.003439838308611609,
+   "ganho_10": 0.00401220606246655,
+   "escolhido_no_dev": true
+  },
+  {
+   "via": "portao",
+   "direcao": "descida",
+   "parametro": "dif, 4 blocos, limite 2.93 mmHg (percentil 75)",
+   "ganho_medio_4a10": 0.0399926244170401,
+   "ganho_10": 0.02002059442014803,
+   "escolhido_no_dev": true
+  },
+  {
+   "via": "portao",
+   "direcao": "subida",
+   "parametro": "rel, 4 blocos, limite 0.53 mmHg (percentil 75)",
+   "ganho_medio_4a10": 0.037822275680374315,
+   "ganho_10": 0.02730740153213085,
+   "escolhido_no_dev": true
+  },
+  {
+   "via": "persistencia",
+   "direcao": "descida",
+   "parametro": "45 s",
+   "ganho_medio_4a10": -0.11465616136938332,
+   "ganho_10": -0.11040651506666188,
+   "escolhido_no_dev": false
+  },
+  {
+   "via": "persistencia",
+   "direcao": "descida",
+   "parametro": "75 s",
+   "ganho_medio_4a10": -0.15381563757450945,
+   "ganho_10": -0.14409241741113887,
+   "escolhido_no_dev": false
+  },
+  {
+   "via": "persistencia",
+   "direcao": "descida",
+   "parametro": "105 s",
+   "ganho_medio_4a10": -0.19043815985778628,
+   "ganho_10": -0.17609350725828388,
+   "escolhido_no_dev": false
+  },
+  {
+   "via": "persistencia",
+   "direcao": "descida",
+   "parametro": "135 s",
+   "ganho_medio_4a10": -0.21069261347460522,
+   "ganho_10": -0.2059278047831733,
+   "escolhido_no_dev": false
+  },
+  {
+   "via": "persistencia",
+   "direcao": "descida",
+   "parametro": "165 s",
+   "ganho_medio_4a10": -0.22018192799202405,
+   "ganho_10": -0.21910366628765754,
+   "escolhido_no_dev": false
+  },
+  {
+   "via": "persistencia",
+   "direcao": "descida",
+   "parametro": "195 s",
+   "ganho_medio_4a10": -0.24995654735831183,
+   "ganho_10": -0.2545997334017712,
+   "escolhido_no_dev": false
+  },
+  {
+   "via": "persistencia",
+   "direcao": "descida",
+   "parametro": "225 s",
+   "ganho_medio_4a10": -0.2612461716004476,
+   "ganho_10": -0.2647719661032113,
+   "escolhido_no_dev": false
+  },
+  {
+   "via": "persistencia",
+   "direcao": "descida",
+   "parametro": "285 s",
+   "ganho_medio_4a10": -0.29095050333697514,
+   "ganho_10": -0.30810383402736163,
+   "escolhido_no_dev": false
+  },
+  {
+   "via": "persistencia",
+   "direcao": "descida",
+   "parametro": "345 s",
+   "ganho_medio_4a10": -0.3306902644476482,
+   "ganho_10": -0.3591728326925254,
+   "escolhido_no_dev": false
+  },
+  {
+   "via": "histerese",
+   "direcao": "descida",
+   "parametro": "limiar inferior 0.5 x limiar",
+   "ganho_medio_4a10": -0.220278436241319,
+   "ganho_10": -0.22502965341665215,
+   "escolhido_no_dev": false
+  },
+  {
+   "via": "histerese",
+   "direcao": "descida",
+   "parametro": "limiar inferior 0.6 x limiar",
+   "ganho_medio_4a10": -0.17013739074052037,
+   "ganho_10": -0.17675841590930352,
+   "escolhido_no_dev": false
+  },
+  {
+   "via": "histerese",
+   "direcao": "descida",
+   "parametro": "limiar inferior 0.7 x limiar",
+   "ganho_medio_4a10": -0.1264785539139292,
+   "ganho_10": -0.12952794265497325,
+   "escolhido_no_dev": false
+  },
+  {
+   "via": "histerese",
+   "direcao": "descida",
+   "parametro": "limiar inferior 0.8 x limiar",
+   "ganho_medio_4a10": -0.08560902535100044,
+   "ganho_10": -0.09084870144649215,
+   "escolhido_no_dev": false
+  },
+  {
+   "via": "histerese",
+   "direcao": "descida",
+   "parametro": "limiar inferior 0.9 x limiar",
+   "ganho_medio_4a10": -0.04400367672478293,
+   "ganho_10": -0.04653453742153624,
+   "escolhido_no_dev": true
+  },
+  {
+   "via": "suavizacao",
+   "direcao": "descida",
+   "parametro": "2 blocos",
+   "ganho_medio_4a10": -0.03555689515625166,
+   "ganho_10": -0.05267871460959628,
+   "escolhido_no_dev": false
+  },
+  {
+   "via": "suavizacao",
+   "direcao": "descida",
+   "parametro": "4 blocos",
+   "ganho_medio_4a10": -0.14773171362233345,
+   "ganho_10": -0.16945817518807382,
+   "escolhido_no_dev": false
+  },
+  {
+   "via": "suavizacao",
+   "direcao": "descida",
+   "parametro": "6 blocos",
+   "ganho_medio_4a10": -0.23063588947853939,
+   "ganho_10": -0.26419392942973496,
+   "escolhido_no_dev": false
+  },
+  {
+   "via": "suavizacao",
+   "direcao": "descida",
+   "parametro": "8 blocos",
+   "ganho_medio_4a10": -0.3017772195059515,
+   "ganho_10": -0.3441787694059354,
+   "escolhido_no_dev": false
+  },
+  {
+   "via": "limite_duracao",
+   "direcao": "descida",
+   "parametro": "1 min",
+   "ganho_medio_4a10": -0.03494480191684441,
+   "ganho_10": -0.1327677486547474,
+   "escolhido_no_dev": false
+  },
+  {
+   "via": "limite_duracao",
+   "direcao": "descida",
+   "parametro": "2 min",
+   "ganho_medio_4a10": -0.014803503895789882,
+   "ganho_10": -0.07622012960712832,
+   "escolhido_no_dev": true
+  },
+  {
+   "via": "limite_duracao",
+   "direcao": "descida",
+   "parametro": "4 min",
+   "ganho_medio_4a10": -0.011716185703135564,
+   "ganho_10": -0.03633355930736659,
+   "escolhido_no_dev": false
+  },
+  {
+   "via": "limite_duracao",
+   "direcao": "descida",
+   "parametro": "8 min",
+   "ganho_medio_4a10": -0.0033035609779247244,
+   "ganho_10": -0.007649584862438941,
+   "escolhido_no_dev": false
+  },
+  {
+   "via": "persistencia",
+   "direcao": "subida",
+   "parametro": "45 s",
+   "ganho_medio_4a10": -0.09511505054823712,
+   "ganho_10": -0.0975703839981299,
+   "escolhido_no_dev": false
+  },
+  {
+   "via": "persistencia",
+   "direcao": "subida",
+   "parametro": "75 s",
+   "ganho_medio_4a10": -0.12375823591873555,
+   "ganho_10": -0.12198722065693546,
+   "escolhido_no_dev": false
+  },
+  {
+   "via": "persistencia",
+   "direcao": "subida",
+   "parametro": "105 s",
+   "ganho_medio_4a10": -0.16290126088433107,
+   "ganho_10": -0.15034434050240664,
+   "escolhido_no_dev": false
+  },
+  {
+   "via": "persistencia",
+   "direcao": "subida",
+   "parametro": "135 s",
+   "ganho_medio_4a10": -0.1863849721113442,
+   "ganho_10": -0.18325868236154919,
+   "escolhido_no_dev": false
+  },
+  {
+   "via": "persistencia",
+   "direcao": "subida",
+   "parametro": "165 s",
+   "ganho_medio_4a10": -0.20370707496609525,
+   "ganho_10": -0.1955458694622727,
+   "escolhido_no_dev": false
+  },
+  {
+   "via": "persistencia",
+   "direcao": "subida",
+   "parametro": "195 s",
+   "ganho_medio_4a10": -0.21467019778715027,
+   "ganho_10": -0.21049041107915134,
+   "escolhido_no_dev": false
+  },
+  {
+   "via": "persistencia",
+   "direcao": "subida",
+   "parametro": "225 s",
+   "ganho_medio_4a10": -0.22208858976605486,
+   "ganho_10": -0.22407692693192827,
+   "escolhido_no_dev": false
+  },
+  {
+   "via": "persistencia",
+   "direcao": "subida",
+   "parametro": "285 s",
+   "ganho_medio_4a10": -0.2570098255286739,
+   "ganho_10": -0.2577564869025293,
+   "escolhido_no_dev": false
+  },
+  {
+   "via": "persistencia",
+   "direcao": "subida",
+   "parametro": "345 s",
+   "ganho_medio_4a10": -0.2980983090832322,
+   "ganho_10": -0.30402430924841395,
+   "escolhido_no_dev": false
+  },
+  {
+   "via": "histerese",
+   "direcao": "subida",
+   "parametro": "limiar inferior 0.5 x limiar",
+   "ganho_medio_4a10": -0.1775837926733566,
+   "ganho_10": -0.17811840908763843,
+   "escolhido_no_dev": false
+  },
+  {
+   "via": "histerese",
+   "direcao": "subida",
+   "parametro": "limiar inferior 0.6 x limiar",
+   "ganho_medio_4a10": -0.1437413824941611,
+   "ganho_10": -0.14101524909528418,
+   "escolhido_no_dev": false
+  },
+  {
+   "via": "histerese",
+   "direcao": "subida",
+   "parametro": "limiar inferior 0.7 x limiar",
+   "ganho_medio_4a10": -0.1062660520328942,
+   "ganho_10": -0.1049056582315302,
+   "escolhido_no_dev": false
+  },
+  {
+   "via": "histerese",
+   "direcao": "subida",
+   "parametro": "limiar inferior 0.8 x limiar",
+   "ganho_medio_4a10": -0.07111395882615988,
+   "ganho_10": -0.072733219095936,
+   "escolhido_no_dev": false
+  },
+  {
+   "via": "histerese",
+   "direcao": "subida",
+   "parametro": "limiar inferior 0.9 x limiar",
+   "ganho_medio_4a10": -0.03594781048133439,
+   "ganho_10": -0.035942896316775275,
+   "escolhido_no_dev": true
+  },
+  {
+   "via": "suavizacao",
+   "direcao": "subida",
+   "parametro": "2 blocos",
+   "ganho_medio_4a10": -0.014105156998953918,
+   "ganho_10": -0.024483522992817863,
+   "escolhido_no_dev": false
+  },
+  {
+   "via": "suavizacao",
+   "direcao": "subida",
+   "parametro": "4 blocos",
+   "ganho_medio_4a10": -0.09697427938450776,
+   "ganho_10": -0.10675645004689038,
+   "escolhido_no_dev": false
+  },
+  {
+   "via": "suavizacao",
+   "direcao": "subida",
+   "parametro": "6 blocos",
+   "ganho_medio_4a10": -0.173257641232386,
+   "ganho_10": -0.20008389041677488,
+   "escolhido_no_dev": false
+  },
+  {
+   "via": "suavizacao",
+   "direcao": "subida",
+   "parametro": "8 blocos",
+   "ganho_medio_4a10": -0.23541449628314273,
+   "ganho_10": -0.2645948664622323,
+   "escolhido_no_dev": false
+  },
+  {
+   "via": "limite_duracao",
+   "direcao": "subida",
+   "parametro": "1 min",
+   "ganho_medio_4a10": -0.027163322512567256,
+   "ganho_10": -0.11983718220959194,
+   "escolhido_no_dev": false
+  },
+  {
+   "via": "limite_duracao",
+   "direcao": "subida",
+   "parametro": "2 min",
+   "ganho_medio_4a10": -0.0072291771523590774,
+   "ganho_10": -0.06797332483519969,
+   "escolhido_no_dev": false
+  },
+  {
+   "via": "limite_duracao",
+   "direcao": "subida",
+   "parametro": "4 min",
+   "ganho_medio_4a10": -0.006522958456283748,
+   "ganho_10": -0.024278051201729323,
+   "escolhido_no_dev": false
+  },
+  {
+   "via": "limite_duracao",
+   "direcao": "subida",
+   "parametro": "8 min",
+   "ganho_medio_4a10": -0.000837534414371764,
+   "ganho_10": -0.008582173693350237,
+   "escolhido_no_dev": true
+  }
+ ]
+}

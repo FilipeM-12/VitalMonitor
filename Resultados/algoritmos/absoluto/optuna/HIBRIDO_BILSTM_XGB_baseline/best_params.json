@@ -1,0 +1,21 @@
+{
+ "best_params": {
+  "rede_learning_rate": 0.0001022388934481713,
+  "rede_lstm_units_l1": 32,
+  "rede_lstm_units_l2": 32,
+  "rede_dropout_rate": 0.2446952089834838,
+  "xgb_n_estimators": 700,
+  "xgb_learning_rate": 0.013472700827918013,
+  "xgb_max_depth": 8,
+  "xgb_subsample": 0.7195051709547887,
+  "xgb_colsample_bytree": 0.6839074352726298,
+  "xgb_reg_alpha": 9.782238842255389,
+  "xgb_reg_lambda": 0.21368849744371468
+ },
+ "mae_cv": 10.221934416818586,
+ "mae_cv_pesquisa": 10.221934416818586,
+ "pesquisa_com": 27,
+ "n_trials": 20,
+ "falhas": 0,
+ "n_features": 27
+}

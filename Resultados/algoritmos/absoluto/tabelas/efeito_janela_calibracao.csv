@@ -1,0 +1,4 @@
+variante,mae_todos,n_todos,mae_apos_calibracao,n_apos_calibracao,ancora_apos_calibracao,fracao_na_janela
+baseline,12.0697,50203,12.2104,49484,12.3389,0.0143
+fft,12.2187,49402,12.3629,48687,12.3918,0.0145
+nk2,9.2419,17607,9.4637,17086,9.5884,0.0296

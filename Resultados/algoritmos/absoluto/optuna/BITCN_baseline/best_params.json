@@ -1,0 +1,14 @@
+{
+ "best_params": {
+  "learning_rate": 0.00015353755534043114,
+  "nb_filters": 64,
+  "kernel_size": 3,
+  "dropout_rate": 0.35605612952853716
+ },
+ "mae_cv": 10.022668537468439,
+ "mae_cv_pesquisa": 10.022668537468439,
+ "pesquisa_com": 27,
+ "n_trials": 20,
+ "falhas": 0,
+ "n_features": 27
+}

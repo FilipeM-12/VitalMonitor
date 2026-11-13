@@ -1,0 +1,5 @@
+v,nome,curto,cor,n_suj,n,idade,modelo,ancora
+XGB_nk2,NeuroKit2,NeuroKit2,#2980b9,28,17607,44.75,9.241860206136202,9.35917542265387
+XGB_fft,Spectral (FFT),Spectral,#e67e22,40,49402,78.5,12.21872546817965,12.245110285683438
+XGB_clinicas,Clinical covariates,Clinical cov.,#27ae60,40,50203,76.75,11.91951814339564,12.194106879402954
+XGB_baseline,Baseline (own extraction),Baseline,#c0392b,40,50203,76.75,12.069689447499567,12.194106879402954

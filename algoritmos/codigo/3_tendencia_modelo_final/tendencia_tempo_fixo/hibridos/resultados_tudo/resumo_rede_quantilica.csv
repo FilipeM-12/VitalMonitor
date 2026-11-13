@@ -1,0 +1,5 @@
+direcao,modelo,auc_cv,auc_holdout,best_params
+descida,BiLSTM_pura_quantilica,0.7873,0.7911,"{""learning_rate"": 0.002099253947579213, ""lstm_units"": 112, ""dropout_rate"": 0.3914473368931056}"
+descida,BiTCN_pura_quantilica,0.7749,0.7663,"{""learning_rate"": 0.00030181243087646205, ""nb_filters"": 16, ""kernel_size"": 5, ""dropout_rate"": 0.25501812466709267}"
+subida,BiLSTM_pura_quantilica,0.7882,0.779,"{""learning_rate"": 0.002099253947579213, ""lstm_units"": 112, ""dropout_rate"": 0.3914473368931056}"
+subida,BiTCN_pura_quantilica,0.7784,0.7555,"{""learning_rate"": 0.0002835780794266309, ""nb_filters"": 32, ""kernel_size"": 6, ""dropout_rate"": 0.2313561191846259}"

@@ -1,0 +1,14 @@
+{
+ "dev_blocos": 1308182,
+ "dev_sujeitos": 302,
+ "dev_sessoes": 8179,
+ "teste_blocos": 224609,
+ "teste_sujeitos": 48,
+ "teste_sessoes": 1589,
+ "ids_teste_pedidos": 50,
+ "ids_teste_sem_dados": [
+  "p030785",
+  "p063762"
+ ],
+ "apg_b_a_em_falta": 0.0
+}

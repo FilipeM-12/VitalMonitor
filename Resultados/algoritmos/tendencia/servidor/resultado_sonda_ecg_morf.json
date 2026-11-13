@@ -1,0 +1,9 @@
+{
+ "csv": "Todos_participante C_bruto_20260408_193122.csv",
+ "segundos_de_sinal": 1200.0,
+ "janelas_avaliadas": 240,
+ "extracao_com_ecg__ecg_real": 236,
+ "extracao_com_ecg__ecg_a_zeros": 0,
+ "extracao_so_ppg__ecg_real": 176,
+ "extracao_so_ppg__ecg_a_zeros": 176
+}

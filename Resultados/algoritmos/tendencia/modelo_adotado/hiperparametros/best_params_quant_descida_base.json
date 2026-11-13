@@ -1,0 +1,41 @@
+{
+  "modo": "quant",
+  "direcao": "descida",
+  "conjunto": "base",
+  "janela": "tempo",
+  "best_cv": 0.775612627478131,
+  "holdout": 0.7556426249088531,
+  "n_features": 19,
+  "feats": [
+    "hr_mean_z",
+    "hr_lag1",
+    "area_mean_global_z",
+    "w50_global_z",
+    "alpha_womersley_global_z",
+    "ppg_crest_time_global_z",
+    "ppg_decay_time_global_z",
+    "age",
+    "gender_bin",
+    "d_hr_mean_z_2m",
+    "d_hr_mean_z_5m",
+    "d_hr_mean_z_10m",
+    "d_area_mean_global_z_2m",
+    "d_area_mean_global_z_5m",
+    "d_area_mean_global_z_10m",
+    "d_alpha_womersley_global_z_2m",
+    "d_alpha_womersley_global_z_5m",
+    "d_alpha_womersley_global_z_10m",
+    "vol_hr_mean_z_5m"
+  ],
+  "best_params": {
+    "n_estimators": 400,
+    "learning_rate": 0.01609398756209477,
+    "max_depth": 5,
+    "min_child_weight": 9,
+    "subsample": 0.7259436315180097,
+    "colsample_bytree": 0.791500457983741,
+    "gamma": 0.3542507216804774,
+    "reg_alpha": 0.29239756716524073,
+    "reg_lambda": 2.424436336858765
+  }
+}

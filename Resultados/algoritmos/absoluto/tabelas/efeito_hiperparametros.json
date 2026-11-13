@@ -1,0 +1,87 @@
+{
+ "27": {
+  "n_tentativas": 20,
+  "melhor": 9.560547231268979,
+  "mediana": 9.634372312405421,
+  "pior": 9.94691987945832,
+  "spearman": {
+   "n_estimators": {
+    "rho": 0.537,
+    "p": 0.0145
+   },
+   "learning_rate": {
+    "rho": 0.731,
+    "p": 0.0003
+   },
+   "max_depth": {
+    "rho": 0.629,
+    "p": 0.003
+   },
+   "subsample": {
+    "rho": 0.003,
+    "p": 0.99
+   },
+   "colsample_bytree": {
+    "rho": 0.759,
+    "p": 0.0001
+   },
+   "reg_alpha": {
+    "rho": -0.759,
+    "p": 0.0001
+   },
+   "reg_lambda": {
+    "rho": 0.457,
+    "p": 0.0427
+   }
+  },
+  "significativos_5pc": [
+   "colsample_bytree",
+   "learning_rate",
+   "max_depth",
+   "n_estimators",
+   "reg_alpha",
+   "reg_lambda"
+  ]
+ },
+ "35": {
+  "n_tentativas": 20,
+  "melhor": 9.600233525520741,
+  "mediana": 9.714226873974825,
+  "pior": 10.068324314627164,
+  "spearman": {
+   "n_estimators": {
+    "rho": 0.424,
+    "p": 0.0627
+   },
+   "learning_rate": {
+    "rho": 0.851,
+    "p": 0.0
+   },
+   "max_depth": {
+    "rho": -0.112,
+    "p": 0.6382
+   },
+   "subsample": {
+    "rho": -0.481,
+    "p": 0.0317
+   },
+   "colsample_bytree": {
+    "rho": 0.325,
+    "p": 0.1623
+   },
+   "reg_alpha": {
+    "rho": 0.453,
+    "p": 0.0451
+   },
+   "reg_lambda": {
+    "rho": 0.35,
+    "p": 0.1299
+   }
+  },
+  "significativos_5pc": [
+   "learning_rate",
+   "reg_alpha",
+   "subsample"
+  ]
+ }
+}

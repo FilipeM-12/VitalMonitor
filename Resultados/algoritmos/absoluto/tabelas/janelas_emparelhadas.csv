@@ -1,0 +1,5 @@
+variante,tolerancia_alvo_mmhg,janelas,sujeitos,mae_propria,mae_variante,ancora_propria,ancora_variante,idade_calib_propria_min,idade_calib_variante_min,pct_janelas_variante_melhor,wilcoxon_p,calib_propria_mae_propria,calib_propria_mae_variante,calib_variante_mae_propria,calib_variante_mae_variante
+NeuroKit (filtragem agressiva),0.5,3151,19,12.79,6.99,12.3,7.4,40.8,12.2,66.1,1.0789100687235189e-124,12.79,12.47,7.36,6.99
+NeuroKit (filtragem agressiva),0.0,2433,19,12.92,6.99,12.59,7.62,37.5,13.0,65.2,4.0109071217241823e-88,12.92,12.53,7.48,6.99
+NeuroKit2 parcial,0.5,14636,28,12.42,9.51,12.49,9.58,71.5,50.5,62.6,3.64531728437564e-268,12.42,11.7,9.91,9.51
+NeuroKit2 parcial,0.0,14005,28,12.54,9.65,12.61,9.71,73.5,52.8,62.8,4.0838422273109155e-256,12.54,11.8,10.04,9.65

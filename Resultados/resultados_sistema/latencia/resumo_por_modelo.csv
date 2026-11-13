@@ -1,0 +1,4 @@
+modelo,capacidade_pulseiras_por_processo,memoria_do_modelo_mb,ficheiros_do_modelo_mb,extracao_ms_p50,inferencia_isolada_ms_p50
+XGBoost,400,17,2.5,11.1,0.56
+BiLSTM + XGBoost,350,501,2.44,11.2,3.64
+BiTCN + XGBoost,350,531,3.51,11.1,2.22

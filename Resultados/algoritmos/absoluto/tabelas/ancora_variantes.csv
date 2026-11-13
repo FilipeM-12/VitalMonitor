@@ -1,0 +1,4 @@
+variante,nome,sujeitos,janelas,idade_calib_mediana_min,mae_ancora,mae_modelo,ganho_do_modelo
+nk2,NeuroKit2,28,17607,44.8,9.36,9.24,0.12
+baseline,Baseline (own extraction),40,50203,76.8,12.19,12.07,0.12
+fft,Spectral (FFT),40,49402,78.5,12.25,12.22,0.03

@@ -1,0 +1,69 @@
+{
+ "registos": 37,
+ "janelas": 10715,
+ "aceites": 7733,
+ "decisao_diferente": 0,
+ "por_chave": {
+  "hr_mean": {
+   "n": 7733,
+   "diferentes": 0
+  },
+  "w50": {
+   "n": 7733,
+   "diferentes": 0
+  },
+  "area_mean": {
+   "n": 7733,
+   "diferentes": 0
+  },
+  "ppg_valley_intensity": {
+   "n": 7733,
+   "diferentes": 0
+  },
+  "ppg_ac_amplitude": {
+   "n": 7733,
+   "diferentes": 0
+  },
+  "ppg_crest_time": {
+   "n": 7733,
+   "diferentes": 0
+  },
+  "ppg_decay_time": {
+   "n": 7733,
+   "diferentes": 0
+  },
+  "alpha_womersley": {
+   "n": 7733,
+   "diferentes": 0
+  },
+  "w25": {
+   "n": 7733,
+   "diferentes": 0
+  },
+  "w75": {
+   "n": 7733,
+   "diferentes": 0
+  },
+  "ppg_max_slope": {
+   "n": 7733,
+   "diferentes": 0
+  },
+  "ppg_max_slope_norm": {
+   "n": 7733,
+   "diferentes": 0
+  },
+  "reflection_index": {
+   "n": 7733,
+   "diferentes": 0
+  },
+  "apg_b_a": {
+   "n": 7733,
+   "diferentes": 0
+  },
+  "apg_d_a": {
+   "n": 7733,
+   "diferentes": 0
+  }
+ },
+ "divergencias": []
+}

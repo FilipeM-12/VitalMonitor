@@ -1,0 +1,19 @@
+[Unit]
+Description=Worker de deteção de tendência (regressão quantílica), instância %i
+After=network.target postgresql.service mosquitto.service
+Wants=postgresql.service mosquitto.service
+
+[Service]
+User=filipe
+Group=filipe
+WorkingDirectory=/home/filipe/Desktop/Tese/servidor/workers
+Environment="PATH=/home/filipe/Desktop/Tese/servidor/venv/bin"
+Environment="WORKER_ID=%i"
+Environment="NUM_WORKERS=4"
+ExecStart=/home/filipe/Desktop/Tese/servidor/venv/bin/python3 worker_tendencia_quantilica.py
+
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

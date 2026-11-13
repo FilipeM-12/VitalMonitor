@@ -1,0 +1,21 @@
+{
+ "data": "2026-10-24",
+ "segundos_de_sinal": 600.0,
+ "velocidade": 1.0,
+ "simulador_codigo_saida": 0,
+ "duracao_real_s": 631,
+ "previsoes": 28,
+ "caracteristicas_por_previsao": [
+  43
+ ],
+ "caracteristicas_em_falta_por_previsao": {
+  "min": 4,
+  "max": 18
+ },
+ "erros_no_registo": 0,
+ "score_descida": [
+  6.035,
+  11.211
+ ],
+ "sucesso": true
+}

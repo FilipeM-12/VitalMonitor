@@ -1,0 +1,18 @@
+{
+ "bhs": {
+  "n_janelas": 50203,
+  "n_sujeitos": 40,
+  "mae": 12.069689447499567,
+  "p5_janela": 34.65529948409458,
+  "p10_janela": 55.004680995159646,
+  "p15_janela": 68.43415732127562,
+  "grau_janela": "D",
+  "p5_sujeito": 38.16756475392212,
+  "p10_sujeito": 60.944588788571174,
+  "p15_sujeito": 74.43589652882774,
+  "grau_sujeito": "D"
+ },
+ "r_mae_idade_calibracao": 0.9999999950373388,
+ "n_horizontes_em_que_o_modelo_vence": 4,
+ "n_horizontes": 6
+}

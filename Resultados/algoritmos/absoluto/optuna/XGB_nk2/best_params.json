@@ -1,0 +1,17 @@
+{
+ "best_params": {
+  "n_estimators": 400,
+  "learning_rate": 0.018902646443881108,
+  "max_depth": 7,
+  "subsample": 0.6967306311875261,
+  "colsample_bytree": 0.6242048919632769,
+  "reg_alpha": 1.4444255615968373,
+  "reg_lambda": 0.0011492980001914887
+ },
+ "mae_cv": 8.733186043476747,
+ "mae_cv_pesquisa": 8.733186043476747,
+ "pesquisa_com": 29,
+ "n_trials": 20,
+ "falhas": 0,
+ "n_features": 29
+}
